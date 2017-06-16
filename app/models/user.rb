@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :meals
+
  def self.find_for_facebook_oauth(auth)
    user_params = auth.slice(:provider, :uid)
    user_params.merge! auth.info.slice(:email, :first_name, :last_name)
@@ -33,6 +35,14 @@ class User < ApplicationRecord
 
  def signed_without_oauth?
    provider != "facebook"
+ end
+
+ def completed_profile?
+  if first_name.present? && last_name.present? && nickname.present?
+    true
+  else
+    false
+  end
  end
 
 end
