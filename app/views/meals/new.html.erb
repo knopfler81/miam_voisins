@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= simple_form_for(@meal) do |f| %>
+        <%= f.input :menu_name %>
+        <%= f.input :portion %>
+        <%= f.input :availability %>
+        <%#= f.input :ingredient %>
+        <%#= f.input :category %>
+        <%= f.input :price %>
+
+        <%= f.submit %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
