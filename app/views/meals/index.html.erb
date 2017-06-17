@@ -1,14 +1,62 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <% @meals.each do |meal| %>
-        <h2><%=link_to meal.menu_name, meal_path(meal)%></h2>
-        <h3>Proposé par: <%= meal.user.nickname %></h3>
-        <p><%= meal.portion %> part(s) disponible(s)</p>
-        <p><%= meal.price %>€/part</p>
 
-        <p>Prévu pour le: <%= meal.availability %></p>
+  <div>
+  <form action="/meals" method="get" class= "mobile-form">
+    <ul class="list-unstyled">
+      <% @categories.each do |category| %>
+        <li>
+          <label class="categories">
+            <input type="checkbox" name="categories[]" value="<%= category.name %>"
+              <%= "checked" if !params[:categories].nil? && params[:categories].include?(category.name) %>>
+             <span>
+             <span class="icons text-center">
+                <i class="fa fa-" aria-hidden="true"></i>
+             </span>
+            <%= category.name %>
+           </span>
+          </label>
+        </li>
       <% end %>
-    </div>
+    </ul>
+    <input class="valid-btn" type="submit" value="Filtrer">
+  </form>
+
+  </div>
+  <div class="row">
+
+    <section class="meals meals-mobile">
+      <% if @meals_count != 0 %>
+        <div class="row">
+          <% @meals.sort.each do |meal| %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <div class="card">
+
+                <div class="description text-center">
+                  <div class="description-meal">
+                    <h2><%=link_to meal.menu_name, meal_path(meal)%></h2>
+                    <small><%= meal.category.name %></small>
+                    <h3>Proposé par: <%= meal.user.nickname %></h3>
+                    <p>Prévu pour le: <%= meal.availability %></p>
+                  </div>
+                  <div class="price-icons">
+                    <p> <%= meal.price %> €</p>
+                    <p><%= meal.portion %> part(s) disponible(s)</p>
+                  </div>
+                </div>
+                <%= link_to '', meal_path(meal), class:"card-link"  %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+      <% else %>
+        <p class="no-meal">Aucun produit ne correspond à votre recherche.
+
+         <%= link_to 'Effacer les filtres', meals_path('category[]' => 'all') %>
+         </p>
+      <% end %>
+
+    </section>
+
   </div>
 </div>

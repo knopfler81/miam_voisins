@@ -3,7 +3,10 @@ class MealsController < ApplicationController
   before_action :find_meal, only: [:show, :update, :edit, :destroy]
 
   def index
-    @meals = Meal.all
+    meal_filter = MealsFilter.new(params)
+    @meals = meal_filter.filter
+    @meals_count = @meals.count
+    @categories = Category.all
   end
 
   def show
@@ -51,7 +54,7 @@ class MealsController < ApplicationController
             :price,
             :portion,
             :availability,
-            :category,
+            :category_id,
             ingredients_attributes: [:id, :name, :_destroy])
   end
 end

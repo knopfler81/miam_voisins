@@ -7,7 +7,7 @@
       <div class="col-xs-12 col-md-10 col-md-offset-1">
 
         <%= f.input :menu_name %>
-        <%= f.input :category, collection: ["Vegan", "Végétarien", "Sans porc"]%>
+        <%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: "Séléctionnez une catégorie" }%>
 
         <p>Préciser les ingredients:</p>
 
