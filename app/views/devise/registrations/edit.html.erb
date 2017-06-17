@@ -7,8 +7,10 @@
 
       <h3>Profile infos</h3>
 
-      <%= f.input :nickname, label: "Choose a nickname", required: true %>
-      <%#= f.input :avatar, as: :attachinary %>
+
+      <%= f.input :nickname, label: "Choisissez un pseudo", required: true %>
+      <%= f.input :avatar, as: :attachinary %>
+
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
