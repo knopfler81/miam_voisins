@@ -55,6 +55,7 @@ class MealsController < ApplicationController
             :portion,
             :availability,
             :category_id,
+            images: [],
             ingredients_attributes: [:id, :name, :_destroy])
   end
 end

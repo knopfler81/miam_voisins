@@ -39,6 +39,12 @@
                   <div class="description-meal">
                     <h3><%= meal.menu_name  %></h3>
                     <span><small><%= meal.category.name %></small></span>
+                    <br>
+                    <% if  meal.images?%>
+
+                      <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
+
+                    <% end %>
                     <h4>Cuisiné par: <%= meal.user.nickname %></h4>
                     <p>Prévu pour le: <%= meal.availability %></p>
                   </div>

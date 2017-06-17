@@ -13,6 +13,10 @@
           <li><%= ingredients.name %></li>
         <% end %>
       </ul>
+
+      '<% @meal.images.each do |image| %>
+        <%= cl_image_tag image.path, width: 300, height: 200, crop: :fill %>
+      <% end %>'
     </div>
   </div>
 </div>
