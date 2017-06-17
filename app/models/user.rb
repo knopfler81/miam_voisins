@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :meals
+  #has_attachment :avatar
 
  def self.find_for_facebook_oauth(auth)
    user_params = auth.slice(:provider, :uid)
