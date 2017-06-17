@@ -10,6 +10,7 @@ gem 'rails', '5.0.2'
 gem 'redis'
 
 gem 'omniauth-facebook'
+gem "cocoon"
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
