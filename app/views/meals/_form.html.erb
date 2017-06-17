@@ -1,0 +1,33 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="meal-form">
+      <%= simple_form_for @meal do |f| %>
+      <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+        <%= f.input :menu_name %>
+        <%= f.input :category, collection: ["Vegan", "Végétarien", "Sans porc"]%>
+
+        <p>Préciser les ingredients:</p>
+
+        <div id="ingredients">
+          <%= f.simple_fields_for :ingredients do |ingredient| %>
+            <%= render "ingredients_fields", f: ingredient %>
+          <% end %>
+          <div class="links text-center">
+            <%= link_to_add_association "Ajouter un ingrédient", f, :ingredients, partial: "ingredients_fields", class:"btn btn-primary btn-sm btn-add-friend" %>
+          </div>
+        </div>
+        <%= f.input :portion %>
+        <%= f.input :availability %>
+        <%= f.input :price %>
+      </div>
+      <div class="col-xs-12  col-md-10 col-md-offset-1 text-center">
+        <%= f.submit "Valider" , class:"btn btn-success btn-lg btn-event"  %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+

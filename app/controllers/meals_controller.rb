@@ -50,6 +50,8 @@ class MealsController < ApplicationController
     .permit(:menu_name,
             :price,
             :portion,
-            :availability)
+            :availability,
+            :category,
+            ingredients_attributes: [:id, :name, :_destroy])
   end
 end

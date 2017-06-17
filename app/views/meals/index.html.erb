@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <% @meals.each do |meal| %>
-        <h2><%= meal.menu_name %></h2>
+        <h2><%=link_to meal.menu_name, meal_path(meal)%></h2>
         <h3>Proposé par: <%= meal.user.nickname %></h3>
         <p><%= meal.portion %> part(s) disponible(s)</p>
-        <p><%= meal.price %>€/part</p
+        <p><%= meal.price %>€/part</p>
 
         <p>Prévu pour le: <%= meal.availability %></p>
       <% end %>
