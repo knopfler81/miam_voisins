@@ -16,7 +16,7 @@ class MealsController < ApplicationController
    if current_user.completed_profile?
      @meal = Meal.new
    else
-     redirect_to edit_user_registration_path, alert: 'Please complete your profile to create a tuto'
+     redirect_to edit_user_registration_path, alert: 'Merci de compléter votre profile'
    end
   end
 
@@ -25,7 +25,7 @@ class MealsController < ApplicationController
     @meal.user = current_user
     respond_to do |format|
       if @meal.save
-        format.html { redirect_to @meal, notice: 'meal was successfully created.' }
+        format.html { redirect_to @meal, notice: 'Repas créé avec succès.' }
       else
         format.html { render :new }
       end
