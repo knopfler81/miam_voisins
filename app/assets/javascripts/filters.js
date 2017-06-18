@@ -1,3 +1,4 @@
+$(function(){
 
   $('#normal-choice input').on('click', function(event) {
     var url = '/meals?' + $('.normal-form').serialize();
@@ -14,3 +15,5 @@
     });
   });
 
+
+})

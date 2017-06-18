@@ -46,7 +46,7 @@ section {
   }
 
   input {
-    //visibility: hidden;
+    visibility: hidden;
   }
   input:checked + span {
     color: red;
