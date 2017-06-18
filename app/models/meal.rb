@@ -7,4 +7,7 @@ class Meal < ApplicationRecord
   validates :menu_name, :price, :portion, :availability, :category, presence: true
 
   belongs_to :user
+
+  geocoded_by :location
+  after_validation :geocode, if: :location_changed?
 end

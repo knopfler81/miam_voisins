@@ -8,12 +8,16 @@ $(function(){
       success: function(data) {
         $('.meals-normal').replaceWith($(data).find('.meals-normal').parent().html());
         history.replaceState({}, "meals", url);
+
       },
+
       error: function(jqXHR) {
         console.error(jqXHR.responseText);
       }
     });
   });
 
+  //Something here
 
-})
+});
+
