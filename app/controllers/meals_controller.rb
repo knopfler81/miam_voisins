@@ -37,6 +37,11 @@ class MealsController < ApplicationController
   end
 
   def update
+    if @meal.update(meal_params)
+      redirect_to meal_path(@meal)
+    else
+      render :edit
+    end
   end
 
   def edit

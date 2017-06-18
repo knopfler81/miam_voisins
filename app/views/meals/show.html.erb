@@ -1,22 +1,31 @@
 <div class="container">
+      <h1><%= @meal.menu_name %></h1>
+        <% if current_user.id == @meal.user.id %>
+          <%= link_to  "Edit", edit_meal_path(@meal), class: "btn btn-warning"  %>
+        <% end %>
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <h2><%= @meal.menu_name %></h2>
+    <div class="col-xs-6">
       <h3>Proposé par: <%= @meal.user.nickname %></h3>
       <p><%= @meal.portion %> part(s) disponible(s)</p>
       <p><%= @meal.price %>€/part</p>
       <p>Prévu pour le: <%= @meal.availability %></p>
-
-      <h3>Ingrédients:</h3>
-      <ul>
-        <% @meal.ingredients.each do |ingredients| %>
-          <li><%= ingredients.name %></li>
-        <% end %>
-      </ul>
-
-      '<% @meal.images.each do |image| %>
-        <%= cl_image_tag image.path, width: 300, height: 200, crop: :fill %>
-      <% end %>'
+    </div>
+    <div class="col-xs-6">
+        <h3>Ingrédients:</h3>
+        <ul>
+          <% @meal.ingredients.each do |ingredients| %>
+            <li><%= ingredients.name %></li>
+          <% end %>
+        </ul>
     </div>
   </div>
+
+
+    <div class="row">
+      <div class="meals-images">
+        <% @meal.images.each do |image| %>
+          <%= cl_image_tag image.path, width: 300, height: 200, crop: :fill %>
+        <% end %>
+      </div>
+    </div>
 </div>
