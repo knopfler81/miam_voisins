@@ -6,6 +6,12 @@ class MealsController < ApplicationController
     meal_filter = MealsFilter.new(params)
     @meals = meal_filter.filter
     @meals_count = @meals.count
+    @meals_location = Meal.where.not(latitude: nil, longitude: nil)
+    @hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
+        marker.lat meal.latitude
+        marker.lng meal.longitude
+    end
+
     @categories = Category.all
   end
 
@@ -60,6 +66,7 @@ class MealsController < ApplicationController
             :portion,
             :availability,
             :category_id,
+            :location,
             images: [],
             ingredients_attributes: [:id, :name, :_destroy])
   end

@@ -23,6 +23,9 @@
         <%= f.input :availability %>
         <%= f.input :price %>
         <%= f.input :images, as: :attachinary %>
+
+        <p>Où peut on venir chercher ce repas?</p>
+        <%= f.input :location %>
       </div>
       <div class="col-xs-12  col-md-10 col-md-offset-1 text-center">
         <%= f.submit "Valider" , class:"btn btn-success btn-lg btn-event"  %>
