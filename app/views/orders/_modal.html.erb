@@ -12,7 +12,22 @@
         <h3>order for <%= @order.meal.menu_name %></h3>
       </div>
       <div class="modal-footer">
-        <%= link_to "Confirm and Pay", order_path(@order), method: :patch, remote: true, class: "btn btn-primary","data-dismiss" =>"modal", id:"confirm" %>
+        <%= form_tag order_payments_path(@order) do %>
+          <article>
+            <label class="order_price">
+              <span><%= humanized_money_with_symbol(@order.amount) %></span>
+            </label>
+          </article>
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-name="My upcoming trip as passenger"
+            data-email="<%= current_user.email %>"
+            data-description="Trip <%= @order.meal.menu_name %>"
+            data-amount="<%= @order.amount_cents %>"
+            data-currency="<%= @order.amount.currency %>">
+          </script>
+        <% end %>
       </div>
 
     </div>

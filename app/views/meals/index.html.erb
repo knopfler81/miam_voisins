@@ -49,7 +49,7 @@
                     <p>Prévu pour le: <%= meal.availability %></p>
                   </div>
                   <div class="price-icons">
-                    <p> <%= meal.price %> €</p>
+                    <p> <%= humanized_money_with_symbol(meal.price) %></p>
                   </div>
                 </div>
               </div>

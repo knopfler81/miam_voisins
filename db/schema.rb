@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619093633) do
+ActiveRecord::Schema.define(version: 20170619140258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20170619093633) do
 
   create_table "meals", force: :cascade do |t|
     t.string   "menu_name"
-    t.integer  "price"
     t.integer  "portion"
     t.date     "availability"
     t.datetime "created_at",   null: false
@@ -57,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170619093633) do
     t.string   "location"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "price"
     t.index ["user_id"], name: "index_meals_on_user_id", using: :btree
   end
 
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20170619093633) do
     t.integer  "meal_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "amount_cents",   default: 0,     null: false
+    t.json     "payment"
     t.index ["meal_id"], name: "index_orders_on_meal_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
