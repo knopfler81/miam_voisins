@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row padded">
+    <div class="col-md-10 col-md-offset-1">
+     <h2> Profile de <%= @user.first_name %> <%= @user.last_name %></h2>
+
+      <div class="row">
+        <div class="col-xs-6">
+           <h4>Les repas actuellement proposés</h4>
+           <ul class="list-unstyled">
+           <% @user.meals.each do |meal| %>
+             <% if  !meal.passed? %>
+               <li><%= link_to meal.menu_name, meal_path(meal)%></li>
+             <% end %>
+           <% end %>
+           </ul>
+         </div>
+         <div class="col-xs-6">
+           <h4>Les repas précédement proposés</h4>
+           <ul class="list-unstyled">
+           <% @user.meals.each do |meal| %>
+             <% if meal.passed? %>
+               <li><%= link_to meal.menu_name, meal_path(meal)%></li>
+             <% end %>
+           <% end %>
+           </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <h4>Les repas que j'ai commandé (en attente)</h4>
+            <ul class="list-unstyled">
+              <% if @user.placed_orders.present? %>
+                <% @user.placed_orders.coming.each do|meal| %>
+                  <li><%= link_to meal.menu_name, meal_path(meal)%></li>
+                <% end %>
+              <% end %>
+            </ul>
+
+        </div>
+        <div class="col-xs-6">
+          <h4>Les repas que j'ai commandé (passés)</h4>
+          <ul class="list-unstyled">
+            <% if @user.placed_orders.present? %>
+              <% @user.placed_orders.passed.each do|meal| %>
+                <li><%= link_to meal.menu_name, meal_path(meal)%></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

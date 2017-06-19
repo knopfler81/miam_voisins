@@ -30,12 +30,13 @@
     </div>
 </div>
 
-
-<div class="row">
-  <div class="order">
-    <div class="col-xs-10 col-xs-offset-1">
-      <%= render "order_form" %>
+<% unless current_user.id == @meal.user_id %>
+  <div class="row">
+    <div class="order">
+      <div class="col-xs-10 col-xs-offset-1">
+        <%= render "order_form" %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'orders/create'
+  root to: 'meals#index'
+
 
   mount Attachinary::Engine => "/attachinary"
 
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
     registrations: "registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  root to: 'meals#index'
+  resources :users, only: [:show]
 
   resources :meals do
     resources :orders, only: [:new, :create]
