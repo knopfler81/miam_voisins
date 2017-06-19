@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 com-sm-offset-1">
+      <h1>Récapitulatif de votre commande:</h1>
+        <h2>Vous avez commandé: <%= @order.quantity %> part(s)  de <%= @meal.menu_name %></h2>
+        <p><strong>Votre message à <%= @meal.user.first_name %>: </strong><%= @order.message %></p>
+        <div class="order-meal">
+           <% if @order.payment_status == true %>
+            <h4 class="booked">Votre repas a bien été réservé</h4>
+          <% else %>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id= "pay">
+           Confirmer et payer
+          </button>
+          <% end %>
+        </div>
+
+    </div>
+  </div>
+<%= render "modal" %>
+</div>
