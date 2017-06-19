@@ -13,5 +13,4 @@ class Order < ApplicationRecord
   def calculate_price
     self.amount = (self.quantity * meal.price)
   end
-
 end

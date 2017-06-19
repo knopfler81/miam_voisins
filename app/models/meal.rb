@@ -25,4 +25,14 @@ class Meal < ApplicationRecord
   def self.passed
     where('availability < ?', Date.current)
   end
+
+
+  def left_meal
+   meals = 0
+    orders.each do |order|
+      meals += order.quantity if order.payment_status?
+    end
+    left_meal = self.portion - meals
+    return left_meal.to_i
+  end
 end

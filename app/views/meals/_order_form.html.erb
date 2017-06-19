@@ -1,6 +1,6 @@
 
 <%= simple_form_for [ @meal, @order] do |f| %>
-  <%= f.input :quantity %>
+  <%= f.input :quantity, label: "Nombre de part", collection: (1..@meal.left_meal) %>
   <%= f.input :message %>
   <%= f.submit %>
 <% end %>
