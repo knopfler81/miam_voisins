@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :find_meal, only: [:create]
   before_action :find_order, only: [:show, :update]
 
+
   def show
     @meal = @order.meal
   end
