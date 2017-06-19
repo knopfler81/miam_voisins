@@ -5,7 +5,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :meals
+  has_many :meals #Meals that the user offers
+
+  has_many :placed_order, through: :received_order, class_name: "Meal", source: :meal #The user order a meal
+
+  has_many :received_order, class_name: "Order" #The user receive an order
+
+  has_many :prepared_order, through: :received_order, class_name: "Order" #The user has prepared the order
+
+
+
   has_attachment :avatar
 
  def self.find_for_facebook_oauth(auth)

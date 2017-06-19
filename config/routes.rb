@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'orders/create'
+
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, controllers: {
@@ -8,6 +10,10 @@ Rails.application.routes.draw do
   }
   root to: 'meals#index'
 
-  resources :meals
+  resources :meals do
+    resources :orders, only: [:new, :create]
+  end
+
+  resources :orders
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
