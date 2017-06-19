@@ -31,10 +31,7 @@
 <% unless current_user.id == @meal.user_id %>
   <div class="row">
     <div class="order">
-      <div class="col-xs-4">
-
-      </div>
-      <div class="col-xs-4">
+      <div class="col-xs-8 col-xs-offset-2">
         <%= render "order_form" %>
       </div>
     </div>
