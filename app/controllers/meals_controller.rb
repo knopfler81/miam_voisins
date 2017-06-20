@@ -10,6 +10,7 @@ class MealsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
         marker.lat meal.latitude
         marker.lng meal.longitude
+        marker.json({ :id => meal.id })
         marker.infowindow render_to_string(partial: "/meals/map_box", locals: { meal: meal })
     end
 
