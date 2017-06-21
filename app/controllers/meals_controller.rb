@@ -7,11 +7,11 @@ class MealsController < ApplicationController
     @meals = meal_filter.filter
     @meals_count = @meals.count
     @meals_location = @meals.where.not(latitude: nil, longitude: nil)
-    @hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
-        marker.lat meal.latitude
-        marker.lng meal.longitude
-        marker.json({ :id => meal.id })
-        marker.infowindow render_to_string(partial: "/meals/map_box", locals: { meal: meal })
+    @markers_hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
+      marker.lat meal.latitude
+      marker.lng meal.longitude
+      marker.json({ :id => meal.id })
+      marker.infowindow render_to_string(partial: "/meals/map_box", locals: { meal: meal })
     end
 
     @categories = Category.all
@@ -55,6 +55,7 @@ class MealsController < ApplicationController
 
   def edit
   end
+
 
   private
 

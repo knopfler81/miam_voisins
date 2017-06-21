@@ -7,10 +7,9 @@ $(function(){
       url: url,
       success: function(data) {
         $('.meals-normal').replaceWith($(data).find('.meals-normal').parent().html());
+        $('#map').replaceWith($(data)).find('#map').updateMarkers(markerJson);
+
         history.replaceState({}, "meals", url);
-        updateMarkers();
-
-
       },
 
       error: function(jqXHR) {
@@ -21,4 +20,5 @@ $(function(){
 
 
 });
+
 
