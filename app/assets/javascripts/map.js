@@ -1,9 +1,10 @@
 var handler = Gmaps.build('Google');
 
+var markerJson = $('#map').data('markers');
+
 
 $(document).on('ready', function() {
   if ($('#map').length > 0) {
-    var markerJson = $('#map').data('markers');
     drawMeAMap(markerJson);
   }
 });
@@ -15,23 +16,19 @@ function drawMeAMap(markerJson){
       internal: { id: 'map' }
 
     },
-    addMarkers(markerJson),
+    updateMarkers(markerJson),
+
   );
 };
 
-function updateMarkers(){
-  removeMarkers();
-  addMarkers();
 
-};
+function updateMarkers(markerJson){
+  //alert("Bonjour");
 
-function removeMarkers(markerJson){
   handler.buildMap({ internal: { id: 'map' } }, function() {
-    markers = handler.removeMarkers(markerJson);
+     markers = handler.addMarkers(markerJson);
+     handler.removeMarkers(marker);
     });
-};
-
-function addMarkers(markerJson){
   handler.buildMap({ internal: { id: 'map' } }, function() {
     markers = handler.addMarkers(markerJson);
     handler.bounds.extendWith(markers);
@@ -45,3 +42,15 @@ function addMarkers(markerJson){
 };
 
 
+// function addMarkers(markerJson){
+//   handler.buildMap({ internal: { id: 'map' } }, function() {
+//     markers = handler.addMarkers(markerJson);
+//     handler.bounds.extendWith(markers);
+//     handler.fitMapToBounds();
+//     if (markers.length == 0) {
+//       handler.getMap().setZoom(2);
+//     } else if (markers.length == 1) {
+//       handler.getMap().setZoom(14);
+//     }
+//   });
+// };

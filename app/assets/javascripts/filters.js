@@ -1,4 +1,4 @@
-// ########  TEST 1 ################
+
 $(function(){
   $('#normal-choice input').on('click', function(event) {
     var url = '/meals?'
@@ -8,8 +8,8 @@ $(function(){
       data:  $('.normal-form').serialize(),
       success: function(data) {
         $('.meals-normal').replaceWith($(data).find('.meals-normal').parent().html());
+        //drawMeAMap(markerJson);
 
-        //$("#map").updateMarkers();
         history.replaceState({}, "meals", url);
       },
 
@@ -18,54 +18,6 @@ $(function(){
       }
     });
   });
+
 });
-
-
-//######## TEST 2 ################
-
-// $(function(){
-//   $('#normal-choice input').on('click', function(event) {
-//     var url = '/meals?' + $('.normal-form').serialize();
-//     $.ajax({
-//       type: "GET",
-//       url: url,
-//       success: function(data) {
-//         $('.meals-normal').replaceWith($(data).find('.meals-normal').parent().html()),
-//         //'#body').updateMarkers(data);
-//         //$("#map").replaceWith($(data)).updateMarkers(markerJson);
-
-//         history.replaceState({}, "meals", url);
-//       },
-
-//       error: function(jqXHR) {
-//         console.error(jqXHR.responseText);
-//       }
-//     });
-//   });
-// });
-
-//########  TEST 3 ################
-
-// $(function(){
-
-//   $('#normal-choice input').on('click', function(event) {
-//     var url = '/meals?' + $('.normal-form').serialize();
-//     $.ajax({
-//       type: "GET",
-//       url: url,
-//       success: function(data) {
-//        $("#body").replaceWith($(data)).updateMarkers(markerJson);
-
-
-
-
-//         history.replaceState({}, "meals", url);
-//       },
-
-//       error: function(jqXHR) {
-//         console.error(jqXHR.responseText);
-//       }
-//     });
-//   });
-// });
 
