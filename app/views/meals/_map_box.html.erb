@@ -1,7 +1,8 @@
 <h3><%= meal.menu_name %></h3>
 <p>Cuisiné par: <%= meal.user.nickname %></p>
-<%= cl_image_tag meal.images.first.path, width: 150, height: 100, crop: :fill %>
-
+<% if meal.images? %>
+  <%= cl_image_tag meal.images.first.path, width: 150, height: 100, crop: :fill %>
+<% end %>
 <p><%= meal.location %></p>
 
 <p><%= link_to "En savoir plus",meal_path(meal)  %></p>
