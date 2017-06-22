@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-
+  <%= render 'shared/search_location' %>
     <div class="col-sm-2">
       <section class="choice" id="normal-choice">
         <form action="/meals" method="get" class= "normal-form">
@@ -47,6 +47,7 @@
                     <% end %>
                     <h4>Cuisiné par: <%= meal.user.nickname %></h4>
                     <p>Prévu pour le: <%= meal.availability %></p>
+                    <p>A récupérer à: <%= meal.location %></p>
                   </div>
                   <div class="price-icons">
                     <p> <%= humanized_money_with_symbol(meal.price) %></p>

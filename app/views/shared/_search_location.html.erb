@@ -1,0 +1,7 @@
+<%= link_to "Proposer un repas", new_meal_path, class: "btn btn-warning"  %>
+
+
+<%= simple_form_for :query, url: meals_path, method: :get, wrapper: :inline_form do |f| %>
+  <%= f.input :location, placeholder: "Chercher un repas", input_html: {class: 'autocomplete form__input_home' }%>
+  <%= f.button :submit, "Trouver", class: "btn btn-warning" %>
+<% end %>
