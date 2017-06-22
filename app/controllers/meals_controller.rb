@@ -2,17 +2,19 @@ class MealsController < ApplicationController
 
   before_action :find_meal, only: [:show, :update, :edit, :destroy]
 
+
   def index
+
     meal_filter = MealsFilter.new(params)
     @meals = meal_filter.filter
     @meals_count = @meals.count
     @meals_location = @meals.where.not(latitude: nil, longitude: nil)
-    @hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
+    @markers_hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
         marker.lat meal.latitude
         marker.lng meal.longitude
+        marker.json({ :id => meal.id })
         marker.infowindow render_to_string(partial: "/meals/map_box", locals: { meal: meal })
     end
-
     @categories = Category.all
   end
 
