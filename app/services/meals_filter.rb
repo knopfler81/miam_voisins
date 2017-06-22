@@ -7,7 +7,8 @@ class MealsFilter
 
   def filter
     filter_by_category
-    @meals
+    @meals = Meal.where('availability  >= ?', Date.today )
+
   end
 
   private
