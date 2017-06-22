@@ -7,10 +7,10 @@ $(function(){
       url: url,
       data:  $('.normal-form').serialize(),
       success: function(data) {
-        $('.meals-normal').replaceWith($(data).find('.meals-normal').parent().html()),
-        $("#map").replaceWith($(data)).updateMarkers(markerJson);
-        history.replaceState({}, "meals", url);
+        $('.meals-normal').replaceWith($(data).find('.meals-normal').parent().html());
 
+        //$("#map").updateMarkers();
+        history.replaceState({}, "meals", url);
       },
 
       error: function(jqXHR) {
@@ -19,6 +19,7 @@ $(function(){
     });
   });
 });
+
 
 //######## TEST 2 ################
 
@@ -57,6 +58,7 @@ $(function(){
 
 
 
+
 //         history.replaceState({}, "meals", url);
 //       },
 
@@ -66,3 +68,4 @@ $(function(){
 //     });
 //   });
 // });
+

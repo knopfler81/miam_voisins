@@ -19,9 +19,9 @@ function drawMeAMap(markerJson){
   );
 };
 
-function updateMarkers(markerJson){
-  removeMarkers(markerJson);
-  addMarkers(markerJson);
+function updateMarkers(){
+  removeMarkers();
+  addMarkers();
 
 };
 
