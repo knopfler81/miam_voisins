@@ -6,8 +6,7 @@
        <% else %>
           <h1>Bienvenue </h1>
       <% end %>
-
-      <%= link_to "Proposer un repas", new_meal_path, class: "btn btn-warning"  %>
+        <%= render "shared/search_location" %>
     </div>
   </div>
 </div>

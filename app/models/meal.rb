@@ -35,4 +35,9 @@ class Meal < ApplicationRecord
     left_meal = self.portion - meals
     return left_meal.to_i
   end
+
+
+  def self.search(search)
+     where(["lower(location) LIKE ?","%#{search.downcase}%"]).order('created_at DESC')
+  end
 end

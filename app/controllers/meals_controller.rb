@@ -4,9 +4,9 @@ class MealsController < ApplicationController
 
 
   def index
-
+    filter_by_location if params[:query].present?
     meal_filter = MealsFilter.new(params)
-    @meals = meal_filter.filter
+    @meals ||= meal_filter.filter
     @meals_count = @meals.count
     @meals_location = @meals.where.not(latitude: nil, longitude: nil)
     @markers_hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
@@ -73,5 +73,10 @@ class MealsController < ApplicationController
             :location,
             images: [],
             ingredients_attributes: [:id, :name, :_destroy])
+  end
+
+
+  def filter_by_location
+    @meals = Meal.search(params[:query][:location]) if params[:query][:location].present?
   end
 end

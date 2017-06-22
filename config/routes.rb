@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'meals#index'
+  root to: 'pages#home'
 
 
   mount Attachinary::Engine => "/attachinary"
