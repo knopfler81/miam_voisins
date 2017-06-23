@@ -2,9 +2,7 @@ class MealsFilter
 
   def initialize(params)
     @params = params
-
-    @meals = Meal.where('availability  >= ?', Date.today )
-
+    @meals = Meal.all
   end
 
   def filter
@@ -19,11 +17,17 @@ class MealsFilter
   def filter_by_category
    if @params[:categories] != nil && @params[:categories].size != 0 && !@params[:categories].include?("all")
      @meals = @meals.joins(:category).where("categories.name IN (?)", @params[:categories])
-    #@meals = Meal.where('location LIKE?', @params[:query][:location]) if @params[:query][:location].present?
    end
   end
 
   def filter_by_location
-    @meals = Meal.where('location LIKE?', @params[:query][:location]) if @params[:query][:location].present?
+    if @params[:query].present?
+     @meals = @meals.search(@params[:query][:location]) if @params[:query][:location].present?
+    else
+      @meals
+    end
   end
 end
+
+
+

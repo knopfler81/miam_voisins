@@ -1,0 +1,23 @@
+    <div class="col-sm-2">
+      <section class="choice" id="normal-choice">
+        <form action="/meals" method="get" class= "normal-form">
+          <ul class="list-unstyled">
+            <label class="categories">
+              <% @categories.each do |category| %>
+                <li>
+                  <input type="checkbox" name="categories[]" value="<%= category.name %>"
+                    <%= "checked" if !params[:categories].nil? && params[:categories].include?(category.name) %>>
+                  <span>
+                     <span class="icons text-center">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                     </span>
+                    <%= category.name %>
+                  </span>
+                </li>
+              <% end %>
+            </label>
+          </ul>
+          <input class="valid-btn" type="submit" value="Filtrer">
+        </form>
+      </section>
+    </div>

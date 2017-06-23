@@ -13,7 +13,6 @@ class Meal < ApplicationRecord
   after_validation :geocode, if: :location_changed?
 
 
-
   def passed?
     true if availability < Date.current
   end
@@ -38,6 +37,10 @@ class Meal < ApplicationRecord
 
 
   def self.search(search)
+    if search
      where(["lower(location) LIKE ?","%#{search.downcase}%"]).order('created_at DESC')
+    else
+      all
+    end
   end
 end

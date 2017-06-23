@@ -1,59 +1,37 @@
 <div class="container">
   <div class="row">
-  <%= render 'shared/search_location' %>
-    <div class="col-sm-2">
-      <section class="choice" id="normal-choice">
-        <form action="/meals" method="get" class= "normal-form">
-          <ul class="list-unstyled">
-            <% @categories.each do |category| %>
-              <li>
-                <label class="categories">
-                  <input type="checkbox" name="categories[]" value="<%= category.name %>"
-                    <%= "checked" if !params[:categories].nil? && params[:categories].include?(category.name) %>>
-
-                  <span>
-                     <span class="icons text-center">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                     </span>
-                    <%= category.name %>
-                  </span>
-
-                </label>
-              </li>
-            <% end %>
-          </ul>
-          <input class="valid-btn" type="submit" value="Filtrer">
-        </form>
-      </section>
-    </div>
-
+  <%#= render 'shared/search_location' %>
+  <%= render 'category_filter' %>
   <div class="col-sm-10">
     <section class="meals-normal">
       <% if @meals_count != 0 %>
         <div class="row">
           <% @meals.sort.each do |meal| %>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <%= link_to meal_path(meal) do %>
-              <div class="card-meal">
-                <div class="description text-center">
-                  <div class="description-meal">
-                    <h3><%= meal.menu_name  %></h3>
-                    <span><small><%= meal.category.name %></small></span>
-                    <br>
-                    <% if  meal.images?%>
+              <% unless meal.passed?  %>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <%= link_to meal_path(meal) do %>
+                  <div class="card-meal">
+                    <div class="description text-center">
+                      <div class="description-meal">
+                        <h3><%= meal.menu_name  %></h3>
+                        <span><small><%= meal.category.name %></small></span>
+                        <br>
+                        <% if  meal.images?%>
 
-                      <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
+                          <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
 
-                    <% end %>
-                    <h4>Cuisiné par: <%= meal.user.nickname %></h4>
-                    <p>Prévu pour le: <%= meal.availability %></p>
-                    <p>A récupérer à: <%= meal.location %></p>
+                        <% end %>
+                        <h4>Cuisiné par: <%= meal.user.nickname %></h4>
+                        <p>Prévu pour le: <%= meal.availability %></p>
+                        <p>A récupérer à:</p>
+                        <p><%= meal.location %></p>
+                      </div>
+                      <div class="price-icons">
+                        <p> <%= humanized_money_with_symbol(meal.price) %></p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="price-icons">
-                    <p> <%= humanized_money_with_symbol(meal.price) %></p>
-                  </div>
-                </div>
-              </div>
+              <% end %>
             </div>
             <% end %>
           <% end %>
