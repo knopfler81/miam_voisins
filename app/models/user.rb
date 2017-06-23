@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :placed_orders, through: :received_order, class_name: "Meal", source: :meal #The user order a meal
 
+  has_many :reviews, through: :meals
 
   has_attachment :avatar
 
@@ -51,6 +52,17 @@ class User < ApplicationRecord
    else
     false
    end
+  end
+
+  def rating_average
+    sum = 0
+    meals.each do |meal|
+      meal.reviews.each do |review|
+        sum += review.rating.to_i
+      end
+    end
+    average = sum / reviews.count
+    return average
   end
 
 end
