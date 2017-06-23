@@ -21,7 +21,7 @@
                           <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
 
                         <% end %>
-                        <h4>Cuisiné par: <%= meal.user.nickname %></h4>
+                        <h4>Cuisiné par: <%= meal.user.nickname  %></h4>
                         <p>Prévu pour le: <%= meal.availability %></p>
                         <p>A récupérer à:</p>
                         <p><%= meal.location %></p>
@@ -36,7 +36,6 @@
             <% end %>
           <% end %>
         </div>
-
       <% else %>
         <p class="no-meal">Aucun repas ne correspond à votre recherche.
 

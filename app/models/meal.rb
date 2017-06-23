@@ -7,6 +7,7 @@ class Meal < ApplicationRecord
 
   validates :menu_name, :price, :portion, :availability, :category, presence: true
 
+  has_many :reviews
   belongs_to :user
 
   geocoded_by :location
@@ -43,4 +44,6 @@ class Meal < ApplicationRecord
       all
     end
   end
+
+
 end

@@ -9,15 +9,18 @@ Rails.application.routes.draw do
     registrations: "registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
   resources :users, only: [:show]
 
   resources :meals do
     resources :orders, only: [:new, :create]
+    resources :reviews, only: [:create]
   end
 
   resources :orders, only: [:show, :create] do
     resources :payments, only: [:new, :create]
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get "cook_profile", to: "meals#cook_profile"
 end
