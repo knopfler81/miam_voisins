@@ -4,17 +4,11 @@ class MealsController < ApplicationController
 
 
   def index
-    filter_by_location if params[:query].present?
+    #filter_by_location if params[:query].present?
     meal_filter = MealsFilter.new(params)
     @meals ||= meal_filter.filter
     @meals_count = @meals.count
-    @meals_location = @meals.where.not(latitude: nil, longitude: nil)
-    @markers_hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
-        marker.lat meal.latitude
-        marker.lng meal.longitude
-        marker.json({ :id => meal.id })
-        marker.infowindow render_to_string(partial: "/meals/map_box", locals: { meal: meal })
-    end
+    #add_markers_on_map
     @categories = Category.all
   end
 
@@ -35,7 +29,7 @@ class MealsController < ApplicationController
     @meal.user = current_user
     respond_to do |format|
       if @meal.save
-        format.html { redirect_to @meal, notice: 'Repas créé avec succès.' }
+        format.html { redirect_to @meal, notice: 'Repas créé avec succès!' }
       else
         format.html { render :new }
       end
@@ -78,5 +72,21 @@ class MealsController < ApplicationController
 
   def filter_by_location
     @meals = Meal.search(params[:query][:location]) if params[:query][:location].present?
+  end
+
+  # def filter_by_category
+  #  if params[:categories] != nil && params[:categories].size != 0 && !params[:categories].include?("all")
+  #    @meals = @meals.joins(:category).where("categories.name IN (?)", params[:categories])
+  #  end
+  # end
+
+  def add_markers_on_map
+    @meals_location = @meals.where.not(latitude: nil, longitude: nil)
+    @markers_hash = Gmaps4rails.build_markers(@meals_location) do |meal, marker|
+        marker.lat meal.latitude
+        marker.lng meal.longitude
+        marker.json({ :id => meal.id })
+        marker.infowindow render_to_string(partial: "/meals/map_box", locals: { meal: meal })
+    end
   end
 end
