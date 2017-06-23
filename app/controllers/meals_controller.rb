@@ -53,10 +53,6 @@ class MealsController < ApplicationController
   def edit
   end
 
-  def cook_profile
-    @user = @meal.user
-  end
-
   private
 
   def find_meal
