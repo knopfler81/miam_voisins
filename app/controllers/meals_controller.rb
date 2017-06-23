@@ -14,6 +14,8 @@ class MealsController < ApplicationController
 
   def show
     @order = Order.new
+    @review = Review.new
+    @user = @meal.user
   end
 
   def new
@@ -49,6 +51,10 @@ class MealsController < ApplicationController
   end
 
   def edit
+  end
+
+  def cook_profile
+    @user = @meal.user
   end
 
   private

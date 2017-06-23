@@ -5,7 +5,7 @@
         <% end %>
   <div class="row">
     <div class="col-xs-6">
-      <h3>Proposé par: <%= @meal.user.nickname %></h3>
+      <h3>Proposé par: <%= link_to @meal.user.nickname, user_path(id: @meal.user.id) %></h3>
       <p><%= @meal.left_meal %> part(s) disponible(s)</p>
       <p><%= humanized_money_with_symbol(@meal.price) %>€/part</p>
       <p>Prévu pour le: <%= @meal.availability %></p>
@@ -32,11 +32,23 @@
   <div class="row">
     <div class="order">
       <div class="col-xs-8 col-xs-offset-2">
+      <% if  @meal.passed?%>
+        <%= render "review_form" %>
+      <% else %>
         <%= render "order_form" %>
+      <% end %>
       </div>
     </div>
   </div>
 <% end %>
 </div>
+  <div class="review padded">
+    <div class="col-xs-8 col-xs-offset-2">
+      <% @meal.reviews.each do |review| %>
+        <p><%= review.rating %></p>
+        <p><%= review.comment %></p>
+      <% end %>
+    </div>
+  </div>
 
 
