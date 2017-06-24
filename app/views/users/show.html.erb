@@ -1,126 +1,80 @@
 
+<div class="profile-header-info text-center">
 
-<div class="tabs">
-
-  <a class="tab" data-target="#z">
-   <h4> Profile de <%= @user.first_name %> <%= @user.last_name %></h4>
-  </a>
-
-  <a class="tab" data-target="#A">
-    <h4>Les repas actuellement proposés</h4>
-  </a>
-
-  <a class="tab" data-target="#B">
-    <h4>Les repas précédement proposés</h4>
-  </a>
-
-  <a class="tab" data-target="#C">
-    <h4>Les repas que j'ai commandé (en attente)</h4>
-  </a>
-
-  <a class="tab" data-target="#D">
-    <h4>Les repas que j'ai commandé (passés)</h4>
-  </a>
-
-  <a class="tab" data-target="#E">
-    <h4>Mes notes en tant que cuisto</h4>
-  </a>
-</div>
-
-
-<div class="container">
-  <div class="tab-content hidden" id="z">
-   <h2> Profile de <%= @user.first_name %> <%= @user.last_name %></h2>
-
-
-    <p>Moyenne des notes de <%= @user.first_name %>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="avatar">
+        <% if @user.avatar.present? %>
+          <%= cl_image_tag @user.avatar.path, :transformation=>[
+          {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+          {:width=>200, :height=>200, :crop=>"scale"}
+          ], class: "avatar-profile" %>
+        <% else %>
+          <% avatar_url = (@user.facebook_picture_url || "http://placehold.it/30x30") %>
+          <%= image_tag avatar_url, class: "avatar-profile" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="profile-name">
+        <h3><%= @user.full_name %></h3>
+      </div>
+      <div class="profile-rating">
         <%  @user.rating_average.times do %>
             <i class="fa fa-star" aria-hidden="true"></i>
         <% end %>
-    </p>
-  </div>
-
-  <div class="tab-content hidden" id="A">
-    <% @user.meals.each do |meal| %>
-      <div class="col-xs-12 col-md-3">
-        <% if !meal.passed? %>
-          <div class="card-meal">
-            <%= link_to meal_path(meal) do  %>
-              <h4><%= meal.menu_name %> de <%= meal.user.nickname %></h4>
-              <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
-              <p><%= meal.price %>€</p>
-            <% end %>
-          </div>
-        <% end %>
       </div>
-    <% end %>
+    </div>
+
+  </div>
+</div>
+
+  <div class="tabs">
+
+<!--     <a class="tab" data-target="#profile">
+     <h4> Profile</h4>
+    </a> -->
+
+    <a class="tab" data-target="#next-meal-order">
+      <h4>En ce moment</h4>
+    </a>
+
+    <a class="tab" data-target="#old-meal-order">
+      <h4>Passés</h4>
+    </a>
+
+    <a class="tab" data-target="#awaiting-meal">
+      <h4>Mes commandes à venir</h4>
+    </a>
+
+    <a class="tab" data-target="#old-meal-ordered">
+      <h4>Mes commandes passées</h4>
+    </a>
+
+    <a class="tab" data-target="#reviews">
+      <h4>Mes notes en tant que cuisto</h4>
+    </a>
   </div>
 
-  <div class="tab-content hidden" id="B">
-    <% @user.meals.each do |meal| %>
-      <div class="col-xs-12 col-md-3">
-        <% if meal.passed? %>
-          <div class="card-meal">
-            <%= link_to meal_path(meal) do  %>
-              <h4><%= meal.menu_name %> de <%= meal.user.nickname %></h4>
-              <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
-              <p><%= meal.price %>€</p>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+
+
+<div class="container">
+
+  <div class="row padded">
+    <%= render "profile" %>
+
+    <%= render "next-meal-order" %>
+
+    <%= render "old-meal-order" %>
+
+    <%= render "awaiting-meal" %>
+
+    <%= render "old-meal-ordered" %>
+
+    <%= render "reviews" %>
   </div>
 
-  <div class="tab-content hidden" id="C">
-    <% if @user.placed_orders.present? %>
-      <% @user.placed_orders.coming.each do|meal| %>
-        <div class="col-xs-12 col-md-3">
-          <%= link_to meal_path(meal) do  %>
-            <div class="card-meal">
-              <h4><%= meal.menu_name %> de <%= meal.user.nickname %></h4>
-              <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
-              <p><%= meal.price %>€</p>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
 
-  <div class="tab-content hidden" id="D">
-    <% if @user.placed_orders.present? %>
-      <% @user.placed_orders.passed.each do|meal| %>
-        <div class="col-xs-12 col-md-3">
-          <%= link_to meal_path(meal) do  %>
-            <div class="card-meal">
-              <h4><%= meal.menu_name %> de <%= meal.user.nickname %></h4>
-              <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
-              <p><%= meal.price %>€</p>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="tab-content hidden" id="E">
-    <ul class="list-unstyled">
-        <% @user.meals.each do | meal|%>
-
-        <li>
-          <%  meal.reviews.each do |review|%>
-            <h4>L'avis de <%= review.user.first_name %> pour <%= meal.menu_name %>:</h4>
-            <% review.rating.times do %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            <% end %>
-            <p><%= review.comment %></p>
-          <% end %>
-          </li>
-        <% end %>
-        <hr>
-    </ul>
-  </div>
 </div>
 
 

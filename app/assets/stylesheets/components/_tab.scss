@@ -1,11 +1,8 @@
 .tabs {
-  background: #21314D;
+  background: #009B95;
   display: flex;
-  justify-content:center;
-  margin-bottom: 30px;
-  height: 100px;
+  padding: 20px 20px 0 20px
 }
-
 .tabs a {
   color: white;
 }
@@ -15,8 +12,8 @@
   opacity: 0.8;
 }
 .tabs h3 {
-  font-size: 20px;
-  font-weight: medium;
+  font-size: 17px;
+  font-weight: bold;
   margin-top: 0;
 }
 .tabs p {
@@ -24,15 +21,17 @@
   margin-bottom: 0;
 }
 .tab {
-  width: 1000px;
+  background: #33CDC7;
+  flex-grow: 1;
   text-align: center;
-  padding: 5px 0;
+  padding: 20px 0;
 }
-
-// .tabs .tab:last-child {
-//   background-color: $orange;
-// }
-
+.tab:first-child {
+  border-radius: 10px 0 0 0;
+}
+.tab:last-child {
+  border-radius: 0 10px 0 0;
+}
 .tab.active {
   background: white;
   color: black;
