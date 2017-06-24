@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
 
-  root to: 'pages#home'
 
+  root to: 'pages#home'
 
   mount Attachinary::Engine => "/attachinary"
 
-  devise_for :users, controllers: {
-    registrations: "registrations",
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+  devise_for :users,
+  controllers: {  registrations: "registrations",
+                  omniauth_callbacks: 'users/omniauth_callbacks'
+                }
 
   resources :users, only: [:show]
 
@@ -21,6 +21,4 @@ Rails.application.routes.draw do
     resources :payments, only: [:new, :create]
   end
 
-
-  get "cook_profile", to: "meals#cook_profile"
 end
