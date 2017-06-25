@@ -1,5 +1,5 @@
 class Meal < ApplicationRecord
-  has_attachments :images, maximum: 4
+  has_attachments :images, maximum: 3
   belongs_to :category
   has_many :ingredients
   has_many :orders
