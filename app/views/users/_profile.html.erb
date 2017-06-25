@@ -3,8 +3,10 @@
 
 
     <p>Moyenne des notes de <%= @user.first_name %>
-        <%  @user.rating_average.times do %>
-            <i class="fa fa-star" aria-hidden="true"></i>
-        <% end %>
+       <% if @user.received_reviews > 0 %>
+         <%  @user.rating_average.times do %>
+             <i class="fa fa-star" aria-hidden="true"></i>
+         <% end %>
+       <% end %>
     </p>
   </div>
