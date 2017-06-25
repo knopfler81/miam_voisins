@@ -55,6 +55,16 @@ class User < ApplicationRecord
    end
   end
 
+  def received_reviews
+    reviews = []
+    meals.each do |meal|
+     meal.reviews.each do |review|
+      reviews << review
+    end
+   end
+    reviews.size
+  end
+
   def rating_average
     sum = 0
     meals.each do |meal|

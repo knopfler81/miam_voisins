@@ -1,0 +1,19 @@
+.menu-title{
+  color: $green;
+  margin-bottom: 20px;
+}
+
+.meal-description {
+  border-bottom: 1px solid $green;
+  padding-bottom: 40px;
+  padding-top: 50px;
+  a {
+    color: $green;
+  }
+
+  .fa{
+    color: $green;
+    margin-right: 3px;
+    font-size: 20px;
+  }
+}
