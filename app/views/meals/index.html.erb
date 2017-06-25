@@ -1,38 +1,43 @@
-<div class="container">
+<div class="content">
   <div class="row">
   <%#= render 'shared/search_location' %>
   <%= render 'category_filter' %>
-  <div class="col-sm-10">
+  <div class="col-xs-12 col-sm-6 col-md-4">
     <section class="meals-normal">
       <% if @meals_count != 0 %>
         <div class="row">
           <% @meals.sort.each do |meal| %>
               <% unless meal.passed?  %>
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                  <%= link_to meal_path(meal) do %>
-                  <div class="card-meal">
-                    <div class="description text-center">
-                      <div class="description-meal">
-                        <h3><%= meal.menu_name  %></h3>
-                        <span><small><%= meal.category.name %></small></span>
-                        <br>
+              <div class="col-xs-3">
+                <div class="card-meal">
+                <%= link_to meal_path(meal) do  %>
+
+                  <div class="row">
+                    <div class="col-xs-12 text-center">
+                      <div class="col-xs-5">
+                        <h3><%= meal.menu_name %></h3>
                         <% if  meal.images?%>
-
-                          <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
-
-                        <% end %>
-                        <h4>Cuisiné par: <%= meal.user.nickname  %></h4>
-                        <p>Prévu pour le: <%= meal.availability %></p>
-                        <p>A récupérer à:</p>
-                        <p><%= meal.location %></p>
+                          <%= cl_image_tag meal.images.first.path, :transformation=>[
+                          {:width=>150, :height=>75, :crop=>"fill"}], class: "meal-image"%>
+                       <% end %>
+                        <h3> <%= humanized_money_with_symbol(meal.price) %></h3>
                       </div>
-                      <div class="price-icons">
-                        <p> <%= humanized_money_with_symbol(meal.price) %></p>
+                      <div class="col-xs-7">
+                       <h3><i class="fa fa-cutlery" aria-hidden="true"></i> <%= meal.user.nickname  %></h3>
+                       <p><%= meal.availability.strftime("%d/%m/%Y")%></p>
+                       <p><%= meal.location %></p>
                       </div>
                     </div>
+
+                   <div class="col-xs-12 text-center ">
+                     <h4><%= meal.category.name %></h4>
+                   </div>
+
                   </div>
-              <% end %>
-            </div>
+                </div>
+
+                <% end %>
+              </div>
             <% end %>
           <% end %>
         </div>
