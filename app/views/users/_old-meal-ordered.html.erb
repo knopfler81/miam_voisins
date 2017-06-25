@@ -1,13 +1,15 @@
+<!-- Repas commandé par le user, passé -->
   <div class="tab-content hidden" id="old-meal-ordered">
-    <% if @user.placed_orders.present? %>
-      <% @user.placed_orders.passed.each do|meal| %>
-        <div class="col-md-8 col-md-offset-2">
+    <h3>YO YO</h3>
+      <% if @user.placed_orders.present? %>
+          <div class="col-md-8 col-md-offset-2 ">
+        <% @user.placed_orders.passed.each do|meal| %>
           <%= link_to meal_path(meal) do  %>
 
-            <%= render "shared/meal_card", meal: meal %>
+          <%= render "shared/meal_card", meal: meal %>
 
           <% end %>
-        </div>
+
+        <% end %>
       <% end %>
-    <% end %>
   </div>

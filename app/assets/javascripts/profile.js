@@ -1,7 +1,7 @@
 $(function(){
 
 
-  $(".tab").on("click", function(e){
+  $(".tab").on("click", function(){
     $(".tab.active").removeClass("active");
     $(this).addClass("active");
     // Hide all tab-content (use class="hidden")
@@ -12,9 +12,3 @@ $(function(){
   });
 
 });
-
-// $(document).ready(function(){
-//   $('.tab.default').addClass("active");
-//     var profile = $(this).data("target");
-//     $(profile).removeClass("hidden");
-//   });

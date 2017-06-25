@@ -44,6 +44,4 @@ class Meal < ApplicationRecord
       all
     end
   end
-
-
 end
