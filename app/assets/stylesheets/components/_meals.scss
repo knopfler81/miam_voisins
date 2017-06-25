@@ -4,6 +4,7 @@
   padding: 20px;
   border-radius: 3px;
   transition: all 0.15s ease;
+  border-bottom: 1px dotted #009B95;
 }
 
 /* Body design */
@@ -26,15 +27,28 @@
  color: #009B95;
 }
 
-.product-info p {
-  padding-top: 10px;
-  color: #999999;
+
+
+.product-info {
+  text-align: center;
+  min-width: 100px;
+  p {
+    padding-top: 10px;
+    color: #999999;
+  }
 }
 /* Product image */
 .product-image {
+  float: right;
   border-radius: 10px;
   margin-right: 20px;
   width: 175px;
+  small{
+    color: #009B95 !important;
+    font-style: italic;
+    padding: 0;
+    float: left;
+  }
 }
 
 /* Upvote design */
@@ -56,9 +70,12 @@
     color: #fff;
     margin-left: 18px;
     padding-top: 5px;
+    margin-top: 40px;
   }
   h4{
     text-align:left;
+    color: #009B95;
+    line-height: 5px;
   }
 }
 
@@ -102,7 +119,7 @@
 //   transform: scale(1.2)
 // }
 .product:hover .product-controls-hidden a {
-  color: #E6E6E6;
+  color: #dbfcfa;
 }
 .product-upvote:hover .product-arrow {
   border-bottom: 9px solid #5898f1;

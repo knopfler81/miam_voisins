@@ -5,12 +5,16 @@
     <div class='product-upvote'>
       <h4><%= meal.menu_name %></h4>
       <p><%= humanized_money(meal.price) %>€</p>
+
     </div>
 
-     <% if  meal.images?%>
+    <div class="product-image">
+      <% if  meal.images?%>
        <%= cl_image_tag meal.images.first.path, :transformation=>[
-       {:width=>150, :height=>75, :crop=>"fill"}],class:"product-image hidden-xs"%>
-    <% end %>
+       {:width=>150, :height=>75, :crop=>"fill"}],class:"hidden-xs"%>
+      <% end %>
+      <small><%= meal.category.name %></small>
+  </div>
 
     <div class='product-body'>
       <h3><%= meal.availability.strftime("%d/%m/%Y")%></h3>
