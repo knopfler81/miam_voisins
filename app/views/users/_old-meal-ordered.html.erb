@@ -1,13 +1,11 @@
   <div class="tab-content hidden" id="old-meal-ordered">
     <% if @user.placed_orders.present? %>
       <% @user.placed_orders.passed.each do|meal| %>
-        <div class="col-xs-12 col-md-3">
+        <div class="col-md-8 col-md-offset-2">
           <%= link_to meal_path(meal) do  %>
-            <div class="card-meal">
-              <h4><%= meal.menu_name %> de <%= meal.user.nickname %></h4>
-              <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
-              <p><%= meal.price %>€</p>
-            </div>
+
+            <%= render "shared/meal_card", meal: meal %>
+
           <% end %>
         </div>
       <% end %>

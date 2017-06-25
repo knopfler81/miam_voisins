@@ -1,15 +1,15 @@
   <div class="tab-content hidden" id="next-meal-order">
     <% @user.meals.each do |meal| %>
-      <div class="col-xs-12 col-md-3">
+
+      <div class="col-md-8 col-md-offset-2">
         <% if !meal.passed? %>
-          <div class="card-meal">
-            <%= link_to meal_path(meal) do  %>
-              <h4><%= meal.menu_name %> de <%= meal.user.nickname %></h4>
-              <%= cl_image_tag meal.images.first.path, width: 200, height: 100, crop: :fill %>
-              <p><%= meal.price %>€</p>
-            <% end %>
-          </div>
+          <%= link_to meal_path(meal) do  %>
+
+            <%= render "shared/meal_card", meal: meal %>
+
+          <% end %>
         <% end %>
       </div>
+
     <% end %>
   </div>

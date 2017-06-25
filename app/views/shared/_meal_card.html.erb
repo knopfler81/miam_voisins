@@ -1,0 +1,35 @@
+
+
+  <div class="product">
+
+    <div class='product-upvote'>
+      <h4><%= meal.menu_name %></h4>
+      <p><%= humanized_money(meal.price) %>€</p>
+    </div>
+
+     <% if  meal.images?%>
+       <%= cl_image_tag meal.images.first.path, :transformation=>[
+       {:width=>150, :height=>75, :crop=>"fill"}],class:"product-image hidden-xs"%>
+    <% end %>
+
+    <div class='product-body'>
+      <h3><%= meal.availability.strftime("%d/%m/%Y")%></h3>
+      <p><%= meal.location %></p>
+    </div>
+
+    <div class="product-info">
+      <% if meal.user.avatar.present? %>
+        <%= cl_image_tag meal.user.avatar.path, :transformation=>[
+        {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+        {:width=>50, :height=>50, :crop=>"scale"}
+        ], class: "avatar-large" %>
+      <% else %>
+        <% avatar_url = (meal.user.facebook_picture_url || "http://placehold.it/30x30") %>
+        <%= image_tag avatar_url, class: "avatar-large" %>
+      <% end %>
+      <p><i class="fa fa-cutlery" aria-hidden="true"></i> <strong><%= meal.user.nickname  %></strong></p>
+    </div>
+
+
+  </div>
+
