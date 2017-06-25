@@ -46,9 +46,16 @@
               <% end %>
             </li>
 
-            <li> <%= link_to  edit_user_registration_path  do %>
-              <i class="fa fa-wrench"></i>  <%=  "Edit" %>
+            <li>
+              <%= link_to  edit_user_registration_path  do %>
+                <i class="fa fa-wrench"></i>  <%=  "Edit" %>
               <% end %>
+            </li>
+
+            <li>
+                <%= link_to  new_meal_path  do %>
+                  <i class="fa fa-cutlery" aria-hidden="true"></i> Proposer
+                <% end %>
             </li>
           </ul>
         </div>
