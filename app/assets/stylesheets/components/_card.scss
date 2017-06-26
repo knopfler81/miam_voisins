@@ -1,8 +1,9 @@
 .reviews-content {
-  padding-top: 20px;
-  background-color: lightgray;
+  padding-top: 30px;
+  background-color: #fff0e8;
   border-radius: 10px 0 0 10px;
   text-align: justify;
+  padding-bottom: 30px;
 }
 
 .user-review-rating {
@@ -20,7 +21,7 @@
   padding: 20px;
   border-radius: 3px;
   transition: all 0.15s ease;
-  background-color: #33CDC7;
+  background-color: $orange;
   margin-bottom: 5px;
   border-radius: 10px 0 0 10px
 }

@@ -2,7 +2,7 @@
   <div class="col-md-10 col-md-offset-1">
       <h1 class="menu-title"><%= @meal.menu_name %>
         <% if current_user.id == @meal.user.id %>
-          <%= link_to  "Edit", edit_meal_path(@meal), class: "btn btn-success"  %>
+          <%= link_to  "Edit", edit_meal_path(@meal), class: "btn btn-warning"  %>
         <% end %></h1>
 
         <div class="row">
