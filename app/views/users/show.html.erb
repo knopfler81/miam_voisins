@@ -21,9 +21,9 @@
       </div>
       <div class="profile-rating">
         <% if @user.received_reviews > 0 %>
-           <%  @user.rating_average.times do %>
-               <i class="fa fa-star" aria-hidden="true"></i>
-           <% end %>
+          <%  @user.rating_average.times do %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -58,6 +58,12 @@
     <%= render "reviews" %>
   </div>
 
+  <script>
+    $('#rating-form').raty({
+      path: '/assets/',
+      scoreName: 'review[rating]'
+    });
+  </script>
 
 
 

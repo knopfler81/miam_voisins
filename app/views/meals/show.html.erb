@@ -51,20 +51,17 @@
         </div>
       </div>
     <% end %>
-      <div class="review padded">
-        <div class="col-xs-8 col-xs-offset-2">
-          <% @meal.reviews.each do |review| %>
-            <p><strong><%= review.user.nickname %></strong></p>
-            <p><% review.rating.times do  %>
-               <i class="fa fa-star" aria-hidden="true"></i>
-               <% end %>
-            </p>
-            <p><%= review.comment %></p>
-            <hr>
-          <% end %>
-        </div>
-      </div>
+    <%= render "review" %>
   </div>
 </div>
 
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+  },
+    path: '/assets/'
+});
 
+</script>
