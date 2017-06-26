@@ -1,14 +1,11 @@
 <!-- Repas commandé par le user, en attente -->
   <div class="tab-content hidden" id="awaiting_meal_ordered">
     <% if @user.placed_orders.present? %>
-        <div class="col-md-8 col-md-offset-2 ">
+      <div class="col-xs-12">
       <% @user.placed_orders.coming.each do|meal| %>
         <%= link_to meal_path(meal) do  %>
-
-        <%= render "shared/meal_card", meal: meal %>
-
+          <%= render "shared/meal_card", meal: meal %>
         <% end %>
-
       <% end %>
       </div>
     <% end %>
