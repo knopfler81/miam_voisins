@@ -1,5 +1,6 @@
 <!-- Repas commandé par le user, en attente -->
-  <div class="tab-content hidden" id="awaiting-meal-ordered">
+  <div class="tab-content hidden" id="awaiting_meal_ordered">
+    <h1>J'attends</h1>
     <% if @user.placed_orders.present? %>
         <div class="col-md-8 col-md-offset-2 ">
       <% @user.placed_orders.coming.each do|meal| %>
@@ -10,6 +11,7 @@
         <% end %>
 
       <% end %>
+      </div>
     <% end %>
   </div>
 

@@ -1,7 +1,6 @@
 $(function(){
 
-
-  $(".tab").on("click", function(){
+  $(".tab").on("click", function(e){
     $(".tab.active").removeClass("active");
     $(this).addClass("active");
     // Hide all tab-content (use class="hidden")

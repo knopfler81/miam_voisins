@@ -1,39 +1,33 @@
-  <div class="tab-content hidden" id="reviews">
-    <% @user.meals.each do | meal|%>
+<div class="tab-content hidden" id="reviews">
 
-
-      <%  meal.reviews.each do |review|%>
-        <div class="card-review">
-
-            <div class="review-user-info">
-              <div class="review-user-avatar">
-                <% if review.user.avatar.present? %>
-                  <%= cl_image_tag review.user.avatar.path, :transformation=>[
-                  {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
-                  {:width=>50, :height=>50, :crop=>"scale"}
-                  ], class: "avatar-reviews" %>
-                <% else %>
-                  <% avatar_url = (review.user.facebook_picture_url || "http://placehold.it/30x30") %>
-                  <%= image_tag avatar_url, class: "avatar-reviews" %>
-                <% end %>
-              </div>
-              <div class="review-user-name">
-                <h3> <%= review.user.first_name %> </h3>
-              </div>
-            </div>
-
-          <div class="review-body">
-              <h4><%= meal.menu_name %>:</h4>
-              <% review.rating.times do %>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              <% end %>
-               <p><%= review.comment %></p>
-
+<h2>YO</h2>
+  <% @user.meals.each do | meal|%>
+    <%  meal.reviews.each do |review|%>
+      <div class="card-review">
+        <div class="review-user-info">
+          <div class="review-user-avatar">
+            <% if review.user.avatar.present? %>
+              <%= cl_image_tag review.user.avatar.path, :transformation=>[
+              {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+              {:width=>50, :height=>50, :crop=>"scale"}
+              ], class: "avatar-reviews" %>
+            <% else %>
+              <% avatar_url = (review.user.facebook_picture_url || "http://placehold.it/30x30") %>
+              <%= image_tag avatar_url, class: "avatar-reviews" %>
+            <% end %>
+          </div>
+          <div class="review-user-name">
+            <h3> <%= review.user.first_name %> </h3>
           </div>
         </div>
-
-
-      <% end %>
+        <div class="review-body">
+            <h4><%= meal.menu_name %>:</h4>
+            <% review.rating.times do %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            <% end %>
+             <p><%= review.comment %></p>
+        </div>
+      </div>
     <% end %>
-
-  </div>
+  <% end %>
+</div>
