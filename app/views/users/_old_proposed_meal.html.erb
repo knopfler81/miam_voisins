@@ -1,6 +1,5 @@
 <!-- Repas que le user proposait (passé) -->
   <div class="tab-content hidden" id="old_meal_proposed">
-  <h1>Je proposais</h1>
     <% @user.meals.each do |meal| %>
         <% if meal.passed? %>
         <div class="col-md-8 col-md-offset-2">

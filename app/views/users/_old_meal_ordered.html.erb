@@ -1,6 +1,5 @@
 <!-- Repas commandé par le user, passé -->
   <div class="tab-content hidden" id="old_meal_ordered">
-  <h2>Repas mangés</h2>
     <% if @user.placed_orders.present? %>
         <div class="col-md-8 col-md-offset-2 ">
       <% @user.placed_orders.passed.each do|meal| %>

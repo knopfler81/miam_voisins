@@ -1,6 +1,5 @@
   <!-- repas que le user propose (en ce moment) -->
   <div class="tab-content" id="next_meal_proposed">
-  <h1>Je propose</h1>
     <% @user.meals.each do |meal| %>
       <div class="col-md-8 col-md-offset-2">
         <% if !meal.passed? %>
