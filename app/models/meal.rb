@@ -19,13 +19,12 @@ class Meal < ApplicationRecord
   end
 
   def self.coming
-    where(' availability >= ?', Date.current)
+    where('availability >= ?', Date.current)
   end
 
   def self.passed
     where('availability < ?', Date.current)
   end
-
 
   def left_meal
    meals = 0
@@ -36,7 +35,6 @@ class Meal < ApplicationRecord
     return left_meal.to_i
   end
 
-
   def self.search(search)
     if search
      where(["lower(location) LIKE ?","%#{search.downcase}%"]).order('created_at DESC')
@@ -44,6 +42,4 @@ class Meal < ApplicationRecord
       all
     end
   end
-
-
 end

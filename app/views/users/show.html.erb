@@ -33,53 +33,42 @@
 
   <div class="tabs">
 
-<!--     <a class="tab" data-target="#profile">
-     <h4> Profile</h4>
-    </a> -->
 
-    <a class="tab" data-target="#next-meal-order">
-      <h4>En ce moment</h4>
+    <a class="tab active" data-target="#next_meal_proposed">
+      <h4>Je propose</h4>
     </a>
-
-    <a class="tab" data-target="#old-meal-order">
-      <h4>Passés</h4>
-    </a>
-
-    <a class="tab" data-target="#awaiting-meal">
-      <h4>Mes commandes à venir</h4>
-    </a>
-
-    <a class="tab" data-target="#old-meal-ordered">
-      <h4>Mes commandes passées</h4>
-    </a>
-
     <a class="tab" data-target="#reviews">
-      <h4>Mes notes en tant que cuisto</h4>
+      <h4>Mes notes</h4>
     </a>
+    <a class="tab" data-target="#old_meal_ordered">
+      <h4>Repas mangés</h4>
+    </a>
+    <a class="tab" data-target="#awaiting_meal_ordered">
+      <h4>Repas attendu</h4>
+    </a>
+    <a class="tab" data-target="#old_meal_proposed">
+      <h4>Je proposais</h4>
+    </a>
+
+
   </div>
 
 
-
-
-
-<div class="content">
-  <div class="row">
-    <%= render "profile" %>
-
-    <%= render "next-meal-order" %>
-
-    <%= render "old-meal-order" %>
-
-    <%= render "awaiting-meal" %>
-
-    <%= render "old-meal-ordered" %>
-
+  <div class="content">
+    <%= render "old_proposed_meal" %>
     <%= render "reviews" %>
+    <%= render "proposed_meal" %>
+    <%= render "awaiting_meal_ordered" %>
+    <%= render "old_meal_ordered" %>
   </div>
 
 
-</div>
 
+<%#= render "reviews" %>
+<%#= render "proposed_meal" %>
+<%#= render "old_proposed_meal" %>
+<%#= render "old_meal_ordered" %>
+<%#= render "awaiting_meal_ordered" %>
 
 
 

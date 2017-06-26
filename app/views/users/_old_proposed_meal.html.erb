@@ -1,15 +1,14 @@
-  <div class="tab-content hidden" id="next-meal-order">
+<!-- Repas que le user proposait (passé) -->
+  <div class="tab-content hidden" id="old_meal_proposed">
     <% @user.meals.each do |meal| %>
-
-      <div class="col-md-8 col-md-offset-2">
-        <% if !meal.passed? %>
+        <% if meal.passed? %>
+        <div class="col-md-8 col-md-offset-2">
           <%= link_to meal_path(meal) do  %>
 
             <%= render "shared/meal_card", meal: meal %>
 
           <% end %>
+        </div>
         <% end %>
-      </div>
-
     <% end %>
   </div>

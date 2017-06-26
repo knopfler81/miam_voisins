@@ -1,6 +1,5 @@
 $(function(){
 
-
   $(".tab").on("click", function(e){
     $(".tab.active").removeClass("active");
     $(this).addClass("active");
@@ -12,9 +11,3 @@ $(function(){
   });
 
 });
-
-// $(document).ready(function(){
-//   $('.tab.default').addClass("active");
-//     var profile = $(this).data("target");
-//     $(profile).removeClass("hidden");
-//   });
