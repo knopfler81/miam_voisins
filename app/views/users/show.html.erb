@@ -1,65 +1,36 @@
-
-<div class="profile-header-info text-center">
-
-  <div class="row">
-    <div class="col-xs-12 col-md-3">
-      <div class="avatar">
-        <% if @user.avatar.present? %>
-          <%= cl_image_tag @user.avatar.path, :transformation=>[
-          {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
-          {:width=>200, :height=>200, :crop=>"scale"}
-          ], class: "avatar-profile" %>
-        <% else %>
-          <% avatar_url = (@user.facebook_picture_url || "http://placehold.it/30x30") %>
-          <%= image_tag avatar_url, class: "avatar-profile" %>
-        <% end %>
+<div class="row padded">
+  <div class="col-md-8">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+        <div class="tabs">
+          <a class="tab active" data-target="#next_meal_proposed">
+            <h4>Les Miams proposés</h4>
+          </a>
+          <a class="tab" data-target="#awaiting_meal_ordered">
+            <h4>Les Miams commandés</h4>
+          </a>
+        </div>
+        <div class="tabs">
+          <a class="tab" data-target="#old_meal_proposed">
+            <h4>Les Miams passés</h4>
+          </a>
+          <a class="tab" data-target="#old_meal_ordered">
+            <h4>Les Miams dégustés</h4>
+          </a>
+        </div>
+      <div class="incoming">
+        <%= render partial: "users/ongoing/proposed_meal" %>
+        <%= render partial: "users/ongoing/awaiting_meal_ordered" %>
       </div>
     </div>
-    <div class="col-xs-12 col-md-3">
-      <div class="profile-name">
-        <h3><%= @user.full_name %></h3>
-      </div>
-      <div class="profile-rating">
-        <% if @user.received_reviews > 0 %>
-          <%#  @user.rating_average.times do %>
-            <!-- <i class="fa fa-star" aria-hidden="true"></i> -->
-          <%# end %>
-          <div class="review-rating" data-score="<%= @user.rating_average %>"></div>
-
-        <% end %>
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <div class="passed">
+          <%= render partial: "users/passed/old_proposed_meal" %>
+          <%= render partial: "users/passed/old_meal_ordered" %>
       </div>
     </div>
 
+  </div>
+  <div class="col-md-4">
+    <%= render partial: "users/review" %>
   </div>
 </div>
-
-  <div class="tabs">
-    <a class="tab active" data-target="#next_meal_proposed">
-      <h4>Je propose</h4>
-    </a>
-    <a class="tab" data-target="#old_meal_proposed">
-      <h4>Je proposais</h4>
-    </a>
-    <a class="tab" data-target="#old_meal_ordered">
-      <h4>Repas mangés</h4>
-    </a>
-    <a class="tab" data-target="#awaiting_meal_ordered">
-      <h4>Repas attendu</h4>
-    </a>
-    <a class="tab" data-target="#reviews">
-      <h4>Mes notes</h4>
-    </a>
-  </div>
-
-
-  <div class="content">
-    <%= render "proposed_meal" %>
-    <%= render "old_proposed_meal" %>
-    <%= render "awaiting_meal_ordered" %>
-    <%= render "old_meal_ordered" %>
-    <%= render "review" %>
-  </div>
-
-
-
-

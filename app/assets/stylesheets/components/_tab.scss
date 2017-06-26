@@ -1,7 +1,7 @@
 .tabs {
-  background: #009B95;
   display: flex;
-  padding: 20px 20px 0 20px
+  background: $orange;
+  padding: 8px;
 }
 .tabs a {
   color: white;
@@ -21,18 +21,23 @@
   margin-bottom: 0;
 }
 .tab {
-  background: #33CDC7;
+  background: $orange;
   flex-grow: 1;
   text-align: center;
-  padding: 20px 0;
+  padding: 20px;
 }
-.tab:first-child {
-  border-radius: 10px 0 0 0;
-}
-.tab:last-child {
-  border-radius: 0 10px 0 0;
-}
+// .tab:first-child {
+//   border-radius: 10px 0 0 0;
+// }
+// .tab:last-child {
+//   border-radius: 0 10px 0 0;
+// }
 .tab.active {
   background: white;
-  color: #009B95;
+  color: black;
+}
+
+
+.passed, .incoming {
+  margin-top: 60px;
 }

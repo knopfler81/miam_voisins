@@ -1,0 +1,12 @@
+<!-- Repas que le user proposait (passé) -->
+  <div class="tab-content hidden" id="old_meal_proposed">
+    <% @user.meals.each do |meal| %>
+        <% if meal.passed? %>
+          <div class="col-xs-12">
+            <%= link_to meal_path(meal) do  %>
+              <%= render "shared/meal_card", meal: meal %>
+            <% end %>
+          </div>
+        <% end %>
+    <% end %>
+  </div>

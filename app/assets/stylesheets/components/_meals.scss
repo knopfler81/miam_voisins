@@ -4,7 +4,7 @@
   padding: 20px;
   border-radius: 3px;
   transition: all 0.15s ease;
-  border-bottom: 1px dotted #009B95;
+  border-bottom: 1px solid $orange;
 }
 
 /* Body design */
@@ -24,7 +24,7 @@
 }
 
 .product-body h3 {
- color: #009B95;
+ color: $orange;
 }
 
 
@@ -44,7 +44,7 @@
   margin-right: 20px;
   width: 175px;
   small{
-    color: #009B95 !important;
+    color: $orange !important;
     font-style: italic;
     padding: 0;
     float: left;
@@ -60,13 +60,13 @@
   font-weight: bold;
   font-size: 13px;
   line-height: 20px;
-  color: #009B95;
+  color: $orange;
   p {
     height: 30px;
     width: 30px;
     text-center: center;
     border-radius: 50px;
-    background-color: #33cdc7;
+    background-color: $orange;
     color: #fff;
     margin-left: 18px;
     padding-top: 5px;
@@ -74,7 +74,7 @@
   }
   h4{
     text-align:left;
-    color: #009B95;
+    color: $orange;
     line-height: 5px;
   }
 }
