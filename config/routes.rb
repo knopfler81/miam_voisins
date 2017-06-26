@@ -21,4 +21,7 @@ Rails.application.routes.draw do
     resources :payments, only: [:new, :create]
   end
 
+  get "/ongoing", to: "users#ongoing"
+  get "/historic", to: "users#historic"
+
 end

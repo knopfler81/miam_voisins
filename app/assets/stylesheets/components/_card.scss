@@ -1,4 +1,18 @@
+.reviews-content {
+  padding-top: 20px;
+  background-color: lightgray;
+  border-radius: 10px 0 0 10px;
+  text-align: justify;
+}
 
+.user-review-rating {
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+}
+
+.review-block{
+  margin-top: 10px;
+}
 
 .card-review {
   display: flex;

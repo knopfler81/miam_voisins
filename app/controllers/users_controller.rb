@@ -5,6 +5,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def ongoing
+  end
+
+  def historic
+  end
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :nickname, :avatar, :email, :password, :password_confirmtaion, :current_password)
