@@ -1,0 +1,12 @@
+  <div class="review padded">
+    <div class="col-xs-8 col-xs-offset-2">
+      <% @meal.reviews.each do |review| %>
+        <p><strong><%= review.user.nickname %></strong></p>
+
+        <div class="review-rating" data-score="<%= review.rating %>"></div>
+
+        <p><%= review.comment %></p>
+        <hr>
+      <% end %>
+    </div>
+  </div>

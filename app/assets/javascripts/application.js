@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require cocoon
@@ -8,3 +9,4 @@
 //= require underscore
 //= require gmaps/google
 //= require_tree .
+//= require turbolinks

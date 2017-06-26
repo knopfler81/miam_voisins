@@ -20,11 +20,12 @@
           </div>
         </div>
         <div class="review-body">
+            <div class="review-rating" data-score="<%= review.rating %>"></div>
             <h4><%= meal.menu_name %>:</h4>
-            <% review.rating.times do %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            <% end %>
-             <p><%= review.comment %></p>
+            <%# review.rating.times do %>
+              <!-- <i class="fa fa-star" aria-hidden="true"></i> -->
+            <%# end %>
+            <p><%= review.comment %></p>
         </div>
       </div>
     <% end %>
