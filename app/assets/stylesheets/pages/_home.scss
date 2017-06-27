@@ -41,3 +41,37 @@
   height: 50px!important;
   border-radius: 10px;
 }
+
+
+.form_input_meal {
+  height: 50px!important;
+  border-radius: 10px;
+}
+
+
+.meal-form {
+  color: $orange;
+  h2{
+    padding: 30px;
+    font-weight: bold;
+  }
+}
+
+select {
+  height: 50px!important;
+  border-radius: 10px;
+}
+
+.ingredients {
+  margin: 20px 0;
+}
+
+
+.links {
+  margin-bottom: 20px;
+}
+
+
+.uploader {
+  margin: 20px 0 40px 0;
+}

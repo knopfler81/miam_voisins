@@ -1,7 +1,7 @@
 <div class="nested-fields">
-  <%= f.input :name, label: "Ajouter les ingredients" %>
+  <%= f.input :name, label: false, placeholder: "Ajouter un ingredient", input_html: {class: 'form_input_meal' } %>
   <div class="links">
-    <%= link_to_remove_association "Supprimer cet ingrédient", f , class: "btn btn-danger btn-xs" %>
+    <%= link_to_remove_association "Supprimer cet ingrédient", f , class: "btn btn-danger btn-sm" %>
   </div>
 </div>
 
