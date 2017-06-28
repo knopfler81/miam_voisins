@@ -29,6 +29,7 @@ gem 'turbolinks'
 gem 'money-rails'
 gem 'stripe'
 
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'

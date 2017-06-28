@@ -1,17 +1,20 @@
 class Meal < ApplicationRecord
   has_attachments :images, maximum: 3
+
   belongs_to :category
-  has_many :ingredients
-  has_many :orders
-  accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
-
-  validates :menu_name, :price, :portion, :availability, :category, :location , :category, presence: true
-
-  has_many :reviews
   belongs_to :user
 
+  has_many :ingredients
+  has_many :orders
+  has_many :notifications, as: :topic
+  has_many :reviews
+
+  accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
+
   geocoded_by :location
+
   after_validation :geocode, if: :location_changed?
+  validates :menu_name, :price, :portion, :availability, :category, :location , :category, presence: true
 
 
   def passed?

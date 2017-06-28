@@ -9,10 +9,10 @@ class User < ApplicationRecord
   has_many :meals #Meals that the user offers
   has_many :received_orders, class_name: "Order" #The user receive an order
   has_many :prepared_orders, through: :meals, class_name: "Order" #The user has prepared the order
-
   has_many :placed_orders, through: :received_orders, class_name: "Meal", source: :meal #The user order a meal
-
   has_many :reviews, through: :meals
+  has_many :notifications
+
 
   has_attachment :avatar
 
