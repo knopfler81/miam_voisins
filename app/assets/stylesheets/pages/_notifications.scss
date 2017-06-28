@@ -1,0 +1,16 @@
+.notification {
+  padding: 20px;
+  margin: 5px;
+  h1{
+    color: $orange;
+  }
+  span {
+    color: $orange;
+  }
+}
+
+.notification-list {
+  margin: 10px;
+  border-bottom: 1px solid $orange;
+  padding: 20px;
+}

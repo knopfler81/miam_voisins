@@ -10,11 +10,13 @@ class PaymentsController < ApplicationController
       charge = Stripe::Charge.create(
         customer:     customer.id,   # You should store this customer id and re-use it.
         amount:       @order.amount_cents, # or booking_price_pennies
-        description:  "Paiement pour le repas#{@order.meal.menu_name} pour l'order id:  #{@order.id}",
+        description:  "Paiement pour le repas#{@order.meal.menu_name}",
         currency:     @order.amount.currency
       )
 
-      @order.update(payment: charge.to_json, payment_status: true)
+      @order.update(payment: charge.to_json)
+      @order.payment
+      SendNotification.new(@order).notify_cook
 
       redirect_to user_path(current_user), notice: "Paiement  validé"
 

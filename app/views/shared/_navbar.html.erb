@@ -18,6 +18,26 @@
       <%= link_to "Propose", new_meal_path, class: "btn btn-lg btn-warning" %>
 
 
+          <!-- notification commande -->
+        <div class="navbar-wagon-item">
+          <div class="dropdown">
+            <div class="badge-container dropdown-toggle", data-toggle="dropdown">
+              <i class="fa fa-envelope-o" aria-hidden="true" style="color: $orange"></i>
+              <div class="badge badge-blue"><%= Notification.unread(current_user).count %></div>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <% Notification.unread(current_user).each do |notification| %>
+                <li>
+                  <%= link_to notification_path(notification) do %>
+                    <% notification.content %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
@@ -64,7 +84,7 @@
 
   </div>
 
-  <!-- Dropdown list appearing on mobile only -->
+  <% if user_signed_in? %>
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
@@ -92,5 +112,8 @@
       </ul>
     </div>
   </div>
+
+  <% end %>
+  <!-- Dropdown list appearing on mobile only -->
 </div>
 
