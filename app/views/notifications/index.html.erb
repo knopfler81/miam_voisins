@@ -1,11 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 padded">
+       <% @notifications.each do | notification | %>
+        <div class="notification-list">
+          <div class="row">
+            <div class="col-xs-3">
+              <% if notification.order.user.avatar.present? %>
+              <%= cl_image_tag notification.order.user.avatar.path,
+                  transformation:[{ :width=>400, :height=>400, :gravity=>"face",
+                  :radius=>"max", :crop=>"crop"}], class: "avatar" %>
+              <% else %>
+                <% avatar_url = (notification.order.user.facebook_picture_url || "http://placehold.it/30x30") %>
+                <%= image_tag avatar_url, class: "avatar-reviews" %>
+              <% end %>
+              <br><br>
+              <small><%= notification.order.user.full_name %></small>
+            </div>
+            <div class="col-xs-6">
+              <h3><%= notification.order.quantity %> x <%= notification.order.meal.menu_name %></h3>
+              <%= notification.order.meal.availability.strftime("%d/%m/%Y") %>
+            </div>
+            <div class="col-xs-3">
+              <%= link_to "voir",notification_path(notification), class: "btn btn-warning"   %>
+              </div>
+          </div>
+        </div>
+     <% end %>
+   </div>
 
-      <% @notifications.each do | notification | %>
-          <li><%= link_to notification.content, notification_path(notification) %></li>
-      <% end %>
-
-    </div>
   </div>
 </div>
