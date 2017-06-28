@@ -1,26 +1,43 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-10 com-sm-offset-1">
-      <h1>Récapitulatif de votre commande:</h1>
+  <div class="row padded">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <h1 class="order-title">Récapitulatif de votre commande</h1>
 
-        <h3>Amount: <%= humanized_money_with_symbol(@order.amount) %></h3>
+        <div class="col-xs-12">
+           <div class="recap">
+             <h2>Vous avez commandé: <%= @order.quantity %> part(s)  de <%= @meal.menu_name %></h2>
+             <h3>Total: <%= humanized_money(@order.amount) %>€</h3>
+             <% @meal.images.each do |image| %>
+                <%= cl_image_tag image.path, width: 300, height: 200, crop: :fill %>
+              <% end %>
+            </div>
+            <br>
+           <p><strong>Votre message à <%= @meal.user.first_name %>:</strong></p>
+           <p><%= @order.message %></p>
+         </div>
+        </div>
 
-
-        <h2>Vous avez commandé: <%= @order.quantity %> part(s)  de <%= @meal.menu_name %></h2>
-        <p><strong>Votre message à <%= @meal.user.first_name %>: </strong><%= @order.message %></p>
-        <div class="order-meal">
-           <% if @order.payment_status == true %>
-            <h4 class="booked">Votre repas a bien été réservé</h4>
-          <% else %>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id= "pay">
-           Confirmer et payer
-          </button>
-          <% end %>
+        <div class="col-xs-12 padded text-center">
+          <div class="order-meal">
+             <% if @order.payment_status == true %>
+              <h4 class="booked">Votre repas a bien été réservé</h4>
+            <% else %>
+              <%= form_tag order_payments_path(@order) do %>
+                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                   data-name="Paiement pour <%= @order.meal.menu_name %>"
+                   data-email="<%= current_user.email %>"
+                   data-description="<%= @order.meal.menu_name %>"
+                   data-amount="<%= @order.amount_cents %>"
+                   data-currency="<%= @order.amount.currency %>">
+                 </script>
+               <% end %>
+            <% end %>
+          </div>
         </div>
 
     </div>
   </div>
-<%= render "modal" %>
 </div>
 
 

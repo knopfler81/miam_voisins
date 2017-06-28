@@ -1,0 +1,31 @@
+.order-title {
+  color: $orange;
+}
+.recap {
+  color: gray;
+}
+
+
+.stripe-button-el {
+  background: $orange !important;
+  padding: 10px 16px!important;
+  font-size: 20px!important;
+  line-height: 1.3333333!important;
+  border-radius: 100px !important;
+  span{
+  background-image: linear-gradient(#ed6e25, #ed6e25, #ed6e25) !important;
+  font-size: 20px !important;
+ }
+}
+
+.modal-text {
+  h3 {
+    color: $orange;
+  }
+}
+
+.order-price {
+  color: gray;
+}
+
+
