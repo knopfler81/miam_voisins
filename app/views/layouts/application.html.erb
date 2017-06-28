@@ -12,11 +12,11 @@
   <body>
     <div id="body">
       <%= render 'shared/flashes' %>
+      <% if content_for?(:navbar) %>
+          <%= yield(:navbar) %>
+      <% else %>
         <%= render "shared/navbar" %>
-      <%# if content_for?(:navbar) %>
-          <%#= yield(:navbar) %>
-      <%# else %>
-      <%# end %>
+      <% end %>
       <%= yield %>
       <%= javascript_include_tag "https://maps.google.com/maps/api/js" %>
       <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
