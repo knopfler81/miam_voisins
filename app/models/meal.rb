@@ -5,7 +5,7 @@ class Meal < ApplicationRecord
   has_many :orders
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
 
-  validates :menu_name, :price, :portion, :availability, :category, presence: true
+  validates :menu_name, :price, :portion, :availability, :category, :location , :category, presence: true
 
   has_many :reviews
   belongs_to :user
