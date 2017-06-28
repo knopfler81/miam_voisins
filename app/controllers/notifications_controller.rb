@@ -6,6 +6,8 @@ class NotificationsController < ApplicationController
 
 
   def index
+    #@notifications = Notification.where("orders.id IN(?)")
     @notifications = Notification.all
   end
+
 end
