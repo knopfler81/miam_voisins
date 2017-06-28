@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <%= @notification.order.user.first_name %>
+      <%= @notification.order.user.first_name %>
+      <%= @notification.order.meal.menu_name %>
+      <%= @notification.order.meal.availability.strftime("%d/%m/%Y") %>
     </div>
   </div>
 </div>

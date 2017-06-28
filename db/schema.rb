@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628091248) do
+ActiveRecord::Schema.define(version: 20170628114804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20170628091248) do
     t.integer  "topic_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "order_id"
+    t.index ["order_id"], name: "index_notifications_on_order_id", using: :btree
     t.index ["topic_type", "topic_id"], name: "index_notifications_on_topic_type_and_topic_id", using: :btree
     t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
@@ -124,6 +126,7 @@ ActiveRecord::Schema.define(version: 20170628091248) do
   end
 
   add_foreign_key "meals", "users"
+  add_foreign_key "notifications", "orders"
   add_foreign_key "notifications", "users"
   add_foreign_key "orders", "meals"
   add_foreign_key "orders", "users"

@@ -1,6 +1,7 @@
 class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :topic, polymorphic: true
+  belongs_to :order
 
   def mark_as_read
     self.read = true

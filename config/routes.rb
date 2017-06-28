@@ -21,6 +21,6 @@ Rails.application.routes.draw do
     resources :payments, only: [:new, :create]
   end
 
-  resources :notifications, only: [:show]
+  resources :notifications, only: [:show, :index]
 
 end
