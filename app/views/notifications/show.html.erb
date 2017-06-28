@@ -4,14 +4,7 @@
       <div class="row">
         <div class="notification">
           <h1>Commande de <%= @notification.order.user.full_name %></h1>
-            <%# if @notification.order.user.avatar.present? %>
-            <%#= cl_image_tag @notification.order.user.avatar.path,
-                transformation:[{ :width=>400, :height=>400, :gravity=>"face",
-                :radius=>"max", :crop=>"crop"}], class: "avatar" %>
-            <%# else %>
-              <%# avatar_url = (@notification.order.user.facebook_picture_url || "http://placehold.it/30x30") %>
-              <%#= image_tag avatar_url, class: "avatar-reviews" %>
-            <%# end %>
+            <% if @notification.user_id == current_user.id %>
 
             <h3><%= @notification.order.quantity %> x <%= @notification.order.meal.menu_name %></h3>
             <h3><span> <%= "#{@notification.order.quantity * @notification.order.meal.price}" %>€</span></h3>
@@ -21,6 +14,7 @@
             <p><%= @notification.order.message %></p>
 
             <%= link_to "Retour aux notifications", notifications_path, class: "btn btn-warning btn-lg"  %>
+            <% end %>
           </div>
 
         </div>

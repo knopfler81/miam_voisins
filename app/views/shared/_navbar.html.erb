@@ -27,11 +27,13 @@
             </div>
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <% Notification.unread(current_user).each do |notification| %>
-                <li>
-                  <%= link_to notification_path(notification) do %>
-                    <% notification.content %>
-                  <% end %>
-                </li>
+
+
+                <li><%= link_to notification_path(notification) do %>
+                  <% notification.content %>
+                <% end %></li>
+
+
               <% end %>
             </ul>
           </div>
