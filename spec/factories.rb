@@ -33,5 +33,10 @@ FactoryGirl.define do
     user
   end
 
-
+  factory :order do
+    message  {Faker::Lorem.sentence(3)}
+    quantity 2
+    meal
+    payment false
+  end
 end
