@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628114804) do
+ActiveRecord::Schema.define(version: 20170702133327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20170628114804) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "sender_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "order_id"
+    t.index ["order_id"], name: "index_conversations_on_order_id", using: :btree
+    t.index ["recipient_id", "sender_id"], name: "index_conversations_on_recipient_id_and_sender_id", unique: true, using: :btree
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -60,6 +70,16 @@ ActiveRecord::Schema.define(version: 20170628114804) do
     t.index ["user_id"], name: "index_meals_on_user_id", using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.boolean  "read",       default: false
     t.string   "content"
@@ -78,14 +98,14 @@ ActiveRecord::Schema.define(version: 20170628114804) do
     t.text     "message"
     t.boolean  "payment_status", default: false
     t.integer  "quantity"
-    t.integer  "user_id"
     t.integer  "meal_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "amount_cents",   default: 0,     null: false
     t.json     "payment"
+    t.integer  "order_item_id"
+    t.integer  "user_id"
     t.index ["meal_id"], name: "index_orders_on_meal_id", using: :btree
-    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -125,11 +145,13 @@ ActiveRecord::Schema.define(version: 20170628114804) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "conversations", "orders"
   add_foreign_key "meals", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "notifications", "orders"
   add_foreign_key "notifications", "users"
   add_foreign_key "orders", "meals"
-  add_foreign_key "orders", "users"
   add_foreign_key "reviews", "meals"
   add_foreign_key "reviews", "users"
 end
