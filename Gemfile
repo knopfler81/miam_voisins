@@ -15,9 +15,6 @@ gem "cocoon"
 gem "geocoder"
 gem "gmaps4rails"
 
-source 'https://rails-assets.org' do
-  gem "rails-assets-underscore"
-end
 
 gem 'cloudinary', '1.1.7'
 gem 'attachinary', github: 'assembler/attachinary'
@@ -38,7 +35,7 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
-group :development, :test do
+group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'listen', '~> 3.0.5'
@@ -46,4 +43,18 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+  gem 'webmock'
+end
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
 end
