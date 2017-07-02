@@ -9,12 +9,10 @@ gem 'puma'
 gem 'rails', '5.0.2'
 gem 'redis'
 
-
 gem 'omniauth-facebook'
 gem "cocoon"
 gem "geocoder"
 gem "gmaps4rails"
-
 
 gem 'cloudinary', '1.1.7'
 gem 'attachinary', github: 'assembler/attachinary'
@@ -26,6 +24,7 @@ gem 'turbolinks'
 gem 'money-rails'
 gem 'stripe'
 
+gem 'faker'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
