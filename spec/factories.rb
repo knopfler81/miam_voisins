@@ -39,4 +39,10 @@ FactoryGirl.define do
     meal
     payment false
   end
+
+  factory :notification do
+    read false
+    content {Faker::Lorem.sentence(3)}
+    user
+  end
 end
