@@ -23,7 +23,5 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [:show, :index]
 
-  authenticated do
-      root to: "secret#index", as: :authenticated_root
-  end
+
 end
