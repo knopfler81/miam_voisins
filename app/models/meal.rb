@@ -14,7 +14,7 @@ class Meal < ApplicationRecord
   geocoded_by :location
 
   after_validation :geocode, if: :location_changed?
-  validates :menu_name, :price, :portion, :availability, :category, :location , :category, presence: true
+  validates :menu_name, :price, :portion, :availability, :location , :category, presence: true
 
 
   def passed?

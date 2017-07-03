@@ -23,4 +23,5 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [:show, :index]
 
+
 end
