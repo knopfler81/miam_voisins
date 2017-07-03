@@ -53,6 +53,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'webmock'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'launchy'
 end
 
 source 'https://rails-assets.org' do
