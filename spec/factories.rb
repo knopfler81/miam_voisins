@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name "Yummy"
+   sequence(:name) { |n| "Catégorie #{n}" }
   end
 
   factory :ingredient do
