@@ -42,6 +42,7 @@ group :development do
   gem 'pry-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rails-controller-testing'
 end
 
 group :test do
