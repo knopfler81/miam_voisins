@@ -55,4 +55,6 @@ class OrdersController < ApplicationController
   def find_meal
     @meal = Meal.find(params[:meal_id])
   end
+
+
 end

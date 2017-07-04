@@ -1,6 +1,7 @@
 class PaymentsController < ApplicationController
   before_action :set_order
 
+
     def create
       customer = Stripe::Customer.create(
         source: params[:stripeToken],
@@ -17,6 +18,9 @@ class PaymentsController < ApplicationController
       @order.update(payment: charge.to_json)
       @order.payment
       SendNotification.new(@order).notify_cook
+      OrderMailer.order_confirmation_maker(@order).deliver_now
+      OrderMailer.order_confirmation_buyer(@order).deliver_now
+
 
       redirect_to user_path(current_user), notice: "Paiement  validé"
 
@@ -30,6 +34,11 @@ class PaymentsController < ApplicationController
 
     def set_order
       @order = Order.where(payment_status: false).find(params[:order_id])
+    end
+
+    def  send_confirmation_mail
+
+
     end
 
 end
