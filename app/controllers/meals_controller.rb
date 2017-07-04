@@ -5,8 +5,8 @@ class MealsController < ApplicationController
 
   def index
     #filter_by_location if params[:query].present?
-    meal_filter = MealsFilter.new(params)
-    @meals ||= meal_filter.filter
+    #meal_filter = MealsFilter.new(params)
+    @meals = Meal.all #meal_filter.filter
     @meals_count = @meals.count
     #add_markers_on_map
     @categories = Category.all
@@ -91,4 +91,5 @@ class MealsController < ApplicationController
         marker.infowindow render_to_string(partial: "/meals/map_box", locals: { meal: meal })
     end
   end
+
 end
