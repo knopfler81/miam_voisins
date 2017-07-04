@@ -1,0 +1,10 @@
+<h2>Salut !</h2>
+
+<p> Tu as reçu une commande pour <%= @order.meal.menu_name %></p>
+
+<p><%= @order.user.full_name %> t'a laissé un petit message:</p>
+
+<small><%= @order.message %></small>
+
+<p> En cas de besoin tu peux contacter <%= mail_to @order.user.email, "#{@order.user.full_name}" %></p>
+
