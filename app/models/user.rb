@@ -6,10 +6,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
+
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
+
   has_many :meals #Meals that the user offers
-  has_many :received_orders, class_name: "Order" #The user receive an order
-  has_many :prepared_orders, through: :meals, class_name: "Order" #The user has prepared the order
-  has_many :placed_orders, through: :received_orders, class_name: "Meal", source: :meal #The user order a meal
+
+  has_many :received_orders, class_name: "Order"
+  has_many :prepared_orders, through: :received_orders,  class_name: "Meal", source: :meal
+
+  has_many :orders #User palce an order
+
   has_many :reviews, through: :meals
   has_many :notifications
 
@@ -77,7 +84,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    self.first_name + " " + self.last_name
+   "#{self.first_name} #{self.last_name}"
   end
 
 end

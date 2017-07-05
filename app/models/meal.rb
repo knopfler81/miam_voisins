@@ -17,16 +17,12 @@ class Meal < ApplicationRecord
   validates :menu_name, :price, :portion, :availability, :location , :category, presence: true
 
 
+  def coming?
+    true if  self.availability >=  Date.current
+  end
+
   def passed?
-    true if availability < Date.current
-  end
-
-  def self.coming
-    where('availability >= ?', Date.current)
-  end
-
-  def self.passed
-    where('availability < ?', Date.current)
+     true if  self.availability <  Date.current
   end
 
   def left_meal

@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-9">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User list</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <h4>Les cuistos:</h4>
+          <% @users.each do |user| %>
+            <% user.orders.each do |order| %>
+              <li><%= link_to order.user.full_name, conversations_path(user_id: user), remote: true, method: :post %></li>
+              <% end %>
+          <% end %>
+        </ul>
+        <ul>
+          <h4>Les gourmands:</h4>
+          <% @orders.each do |order| %>
+            <li><%= link_to order.meal.user.full_name, conversations_path(user_id: order.meal.user), remote: true, method: :post %></li>
+
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

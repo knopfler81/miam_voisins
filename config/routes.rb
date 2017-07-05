@@ -23,5 +23,17 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [:show, :index]
 
+  resources :conversations, only: [:create] do
+    resources :messages, only: [:create]
+  end
 
+
+  resources :conversations, only: [:create] do
+    member do
+      post :close
+    end
+  end
+
+
+  get "/conversations", to: "pages#index"
 end
