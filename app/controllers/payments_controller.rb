@@ -17,7 +17,12 @@ class PaymentsController < ApplicationController
 
       @order.update(payment: charge.to_json)
       @order.payment
-      SendNotification.new(@order).notify_cook
+      SendNotification.new(@order).notify_maker
+
+
+      StartConversation.new(@order).conversation_with_maker
+      StartConversation.new(@order).conversation_with_buyer
+
       OrderMailer.order_confirmation_maker(@order).deliver_now
       OrderMailer.order_confirmation_buyer(@order).deliver_now
 

@@ -4,7 +4,7 @@ class SendNotification
     @order = order
   end
 
-  def notify_cook
+  def notify_maker
     Notification.create(
       user: @order.meal.user,
       topic: @order,

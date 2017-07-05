@@ -14,8 +14,18 @@
       </div>
       <div class="panel-body">
         <ul>
+          <h4>Les cuistos:</h4>
           <% @users.each do |user| %>
-           <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %></li>
+            <% user.orders.each do |order| %>
+              <li><%= link_to user.full_name, conversations_path(user_id: user), remote: true, method: :post %></li>
+              <% end %>
+          <% end %>
+        </ul>
+        <ul>
+          <h4>Les clients:</h4>
+          <% @orders.each do |order| %>
+            <li><%= link_to order.meal.user.full_name, conversations_path(user_id: order.meal.user), remote: true, method: :post %></li>
+
           <% end %>
         </ul>
       </div>
