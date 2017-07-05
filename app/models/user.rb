@@ -6,6 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
+
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
+
   has_many :meals #Meals that the user offers
   has_many :received_orders, class_name: "Order" #The user receive an order
   has_many :prepared_orders, through: :meals, class_name: "Order" #The user has prepared the order
