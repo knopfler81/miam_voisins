@@ -3,7 +3,8 @@ require 'rails_helper'
 describe User  do
   it { should have_many(:meals)}
   it { should have_many(:received_orders)}
-  it { should have_many(:placed_orders)}
+  it { should have_many(:prepared_orders)}
+  it { should have_many(:orders)}
   it { should have_many(:reviews)}
   it { should have_many(:notifications)}
 

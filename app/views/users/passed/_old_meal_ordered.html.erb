@@ -1,16 +1,46 @@
 <!-- Repas commandé par le user, passé -->
   <div class="tab-content hidden" id="old_meal_ordered">
-    <% if @user.placed_orders.present? %>
+    <% if @user.orders.present? %>
       <div class="col-xs-12 ">
-        <% @user.placed_orders.passed.each do|meal| %>
-          <%= link_to meal_path(meal) do  %>
+        <%@user.orders.each do|order| %>
+          <% if order.meal.passed? %>
+           <%= link_to meal_path(meal) do  %>
             <%= render "shared/meal_card", meal: meal %>
+          <%end %>
           <% end %>
-        <% end %>
+        <%end %>
       </div>
-    <% end %>
+    <%end %>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Repas commandé par le user, passé -->
+    <div class="tab-content hidden" id="old_meal_ordered">
+      <%# if @user.orders.present? %>
+        <div class="col-xs-12 ">
+          <%# @user.orders.each do|order| %>
+            <%# order.meals.passed.each do |meal| %>
+
+
+            <%#= link_to meal_path(meal) do  %>
+              <%#= render "shared/meal_card", meal: meal %>
+            <%# end %>
+            <%# end %> %>
+          <% #end %>
+        </div>
+      <%# end %>
+    </div>
 
 
 
