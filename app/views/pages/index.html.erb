@@ -14,21 +14,29 @@
       </div>
       <div class="panel-body">
         <ul>
-          <h4>Les cuistos:</h4>
+          <h4>Les gourmands:</h4>
           <% @users.each do |user| %>
             <% user.orders.each do |order| %>
-              <li><%= link_to order.user.full_name, conversations_path(user_id: user), remote: true, method: :post %></li>
+              <% @buyers = [] %>
+              <% @buyers << order.user unless @buyers.include?(order.user) %>
+                <% @buyers.each do |buyer| %>
+                  <li><%= link_to buyer.full_name, conversations_path(user_id: buyer), remote: true, method: :post %></li>
+                <% end %>
               <% end %>
-          <% end %>
+            <% end %>
         </ul>
         <ul>
-          <h4>Les gourmands:</h4>
+          <h4>Les cuistos:</h4>
           <% @orders.each do |order| %>
-            <li><%= link_to order.meal.user.full_name, conversations_path(user_id: order.meal.user), remote: true, method: :post %></li>
-
+            <% @makers = [] %>
+            <% @makers << order.meal.user unless @makers.include?(order.meal.user) %>
+            <% @makers.each do |maker| %>
+              <li><%= link_to maker.full_name, conversations_path(user_id: maker), remote: true, method: :post %></li>
+            <% end %>
           <% end %>
         </ul>
       </div>
     </div>
   </div>
 </div>
+

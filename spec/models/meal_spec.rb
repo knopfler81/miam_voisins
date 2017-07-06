@@ -35,25 +35,16 @@ describe Meal do
     end
   end
 
-  describe ".passed" do
-    it "returns only passed meals" do
-      coming_meal = create(:meal, availability: 2.days.from_now)
-      passed_meal = create(:meal, availability: 2.days.ago)
 
-      test_passed_meal = Meal.passed
 
-      expect(test_passed_meal.first).to eq(passed_meal)
-    end
-  end
-
-  describe ".coming" do
+  describe "#coming?" do
     it "returns only coming meals" do
       coming_meal = create(:meal, availability: 2.days.from_now)
       passed_meal = create(:meal, availability: 2.days.ago)
 
-      test_coming_meal = Meal.coming
+      test_coming_meal = coming_meal.coming?
 
-      expect(test_coming_meal.first).to eq(coming_meal)
+      expect(test_coming_meal).to be_truthy
     end
   end
 
