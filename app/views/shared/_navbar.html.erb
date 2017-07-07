@@ -15,10 +15,10 @@
     <% if user_signed_in? %>
 
 
-      <%= link_to "Propose", new_meal_path, class: "btn btn-lg btn-warning", id: "btn-propose" %>
+      <%= link_to "Proposer", new_meal_path, class: "btn btn-lg btn-warning", id: "btn-propose" %>
 
 
-          <!-- notification commande -->
+        <!-- notification commande -->
         <div class="navbar-wagon-item">
           <div class="dropdown">
             <div class="badge-container dropdown-toggle", data-toggle="dropdown">
@@ -66,6 +66,11 @@
             <li>
               <%= link_to  edit_user_registration_path  do %>
                 <i class="fa fa-wrench"></i>  <%=  "Edit" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to  conversations_path  do %>
+                <i class="fa fa-wechat"></i>  <%=  "Chat" %>
               <% end %>
             </li>
             <li>
