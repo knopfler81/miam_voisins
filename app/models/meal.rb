@@ -5,7 +5,7 @@ class Meal < ApplicationRecord
   belongs_to :user
 
   has_many :ingredients
-  has_many :orders
+  has_many :orders, dependent: :destroy
   has_many :notifications, as: :topic
   has_many :reviews
 

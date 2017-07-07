@@ -10,24 +10,27 @@
   <div class="col-md-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">User list</h3>
+        <h3 class="panel-title"><%= current_user.full_name %></h3>
       </div>
       <div class="panel-body">
         <ul>
-          <h4>Les cuistos:</h4>
-          <% @users.each do |user| %>
-            <% user.orders.each do |order| %>
-              <li><%= link_to order.user.full_name, conversations_path(user_id: user), remote: true, method: :post %></li>
-              <% end %>
-          <% end %>
-        </ul>
-        <ul>
-          <h4>Les gourmands:</h4>
-          <% @orders.each do |order| %>
-            <li><%= link_to order.meal.user.full_name, conversations_path(user_id: order.meal.user), remote: true, method: :post %></li>
+        <h4>Ils cuisinent pour moi</h4>
+        <% current_user.orders.each do |order|%>
 
-          <% end %>
-        </ul>
+          <li><%= link_to "#{order.meal.menu_name} - #{order.meal.user.first_name}", conversations_path(user_id: order.meal.user), remote: true, method: :post %></li>
+        <% end %>
+
+      </ul>
+    <ul>
+      <h4>Je cuisine pour eux:</h4>
+      <% current_user.meals.map do |meal| %>
+        <% meal.orders.map do |order| %>
+          <li><%= link_to order.user.full_name , conversations_path(user_id: order.user), remote: true, method: :post %></li>
+        <% end %>
+      <% end %>
+
+
+    </ul>
       </div>
     </div>
   </div>

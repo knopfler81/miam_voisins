@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   before_save :calculate_price
   belongs_to :user
-  belongs_to :meal
+  belongs_to :meal, dependent: :destroy
 
   has_many :notifications, as: :topic
 

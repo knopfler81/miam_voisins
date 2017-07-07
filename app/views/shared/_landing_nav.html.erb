@@ -9,23 +9,25 @@
     <% if user_signed_in? %>
 
 
-      <%= link_to "Propose", new_meal_path, class: "btn btn-lg btn-warning" %>
+      <%= link_to "Proposer", new_meal_path, class: "btn btn-lg btn-warning" %>
 
 
           <!-- notification commande -->
         <div class="navbar-wagon-item">
           <div class="dropdown">
             <div class="badge-container dropdown-toggle", data-toggle="dropdown">
-              <i class="fa fa-envelope-o" aria-hidden="true" style="color: $orange"></i>
+              <i class="fa fa-envelope-o" aria-hidden="true" style="color: #fff"></i>
               <div class="badge badge-blue"><%= Notification.unread(current_user).count %></div>
             </div>
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <% Notification.unread(current_user).each do |notification| %>
-
+                  <% if notification.present? %>
 
                 <li><%= link_to notification_path(notification) do %>
                   <% notification.content %>
                 <% end %></li>
+                  <% end %>
+
 
 
               <% end %>
@@ -60,6 +62,11 @@
             <li>
               <%= link_to  edit_user_registration_path  do %>
                 <i class="fa fa-wrench"></i>  <%=  "Edit" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to  conversations_path  do %>
+                <i class="fa fa-wechat"></i>  <%=  "Chat" %>
               <% end %>
             </li>
             <li>
