@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :notifications
 
 
+
   has_attachment :avatar
 
 
@@ -72,6 +73,8 @@ class User < ApplicationRecord
     reviews.size
   end
 
+  def buyer
+  end
   def rating_average
     sum = 0
     meals.each do |meal|
