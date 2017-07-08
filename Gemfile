@@ -33,6 +33,7 @@ gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem 'awesome_print'
 
 group :development do
   gem 'better_errors'

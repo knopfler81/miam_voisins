@@ -17,7 +17,7 @@
         <h4>Ils cuisinent pour moi</h4>
         <% current_user.orders.each do |order|%>
 
-          <li><%= link_to "#{order.meal.menu_name} - #{order.meal.user.first_name}", conversations_path(user_id: order.meal.user), remote: true, method: :post %></li>
+          <li><%= link_to order.meal.user.full_name, conversations_path(user_id: order.meal.user), remote: true, method: :post %></li>
         <% end %>
 
       </ul>
