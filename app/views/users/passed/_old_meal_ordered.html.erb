@@ -4,8 +4,8 @@
       <div class="col-xs-12 ">
         <%@user.orders.each do|order| %>
           <% if order.meal.passed? %>
-           <%= link_to meal_path(meal) do  %>
-            <%= render "shared/meal_card", meal: meal %>
+           <%= link_to meal_path(order.meal) do  %>
+            <%= render "shared/meal_card", meal: order.meal %>
           <%end %>
           <% end %>
         <%end %>
