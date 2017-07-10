@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710071141) do
+ActiveRecord::Schema.define(version: 20170710071815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20170710071141) do
     t.integer  "sender_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "order_id"
+    t.index ["order_id"], name: "index_conversations_on_order_id", using: :btree
     t.index ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
     t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
   end
@@ -143,6 +145,7 @@ ActiveRecord::Schema.define(version: 20170710071141) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "conversations", "orders"
   add_foreign_key "meals", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
