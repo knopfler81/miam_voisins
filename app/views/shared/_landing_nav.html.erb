@@ -21,12 +21,12 @@
             </div>
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <% Notification.unread(current_user).each do |notification| %>
-                  <% if notification.present? %>
+
 
                 <li><%= link_to notification_path(notification) do %>
-                  <% notification.content %>
+                  <%= notification.content %>
                 <% end %></li>
-                  <% end %>
+
 
 
 
